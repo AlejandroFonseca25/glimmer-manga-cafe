@@ -13,18 +13,18 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Name">
+      <Label fx:id="adminNameUPLEFT" layoutX="14.0" layoutY="14.0" text="Name">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="12.0" layoutY="41.0" mnemonicParsing="false" text="log out" />
-      <Label layoutX="501.0" layoutY="14.0" text="Date/Hour">
+      <Button layoutX="12.0" layoutY="41.0" mnemonicParsing="false" onAction="#loadLogin" text="log out" />
+      <Label fx:id="dateHourTextField" layoutX="501.0" layoutY="14.0" text="Date/Hour">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="13.0" layoutY="361.0" mnemonicParsing="false" text="Back" />
+      <Button layoutX="13.0" layoutY="361.0" mnemonicParsing="false" onAction="#backFromSupplyManagement" text="Back" />
       <VBox layoutX="112.0" layoutY="125.0" prefHeight="55.0" prefWidth="100.0">
          <children>
             <Label text="System ID:">
@@ -32,10 +32,10 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField />
+            <TextField fx:id="productIDSearch" />
          </children>
       </VBox>
-      <Button layoutX="215.0" layoutY="149.0" mnemonicParsing="false" text="Find" />
+      <Button layoutX="215.0" layoutY="149.0" mnemonicParsing="false" onAction="#searchProductID" text="Find" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="136.0" layoutY="81.0" text="Removal">
          <font>
             <Font size="18.0" />
@@ -78,13 +78,13 @@
             </Label>
          </children>
       </GridPane>
-      <Button disable="true" layoutX="136.0" layoutY="270.0" mnemonicParsing="false" text="Remove" />
+      <Button disable="true" layoutX="136.0" layoutY="270.0" mnemonicParsing="false" onAction="#removeProduct" text="Remove" />
       <Label layoutX="401.0" layoutY="81.0" text="Addition">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ChoiceBox layoutX="361.0" layoutY="149.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="productType" layoutX="361.0" layoutY="149.0" prefWidth="150.0" />
       <GridPane layoutX="323.0" layoutY="180.0" prefHeight="90.0" prefWidth="227.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="60.0" />
@@ -105,10 +105,10 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField disable="true" GridPane.columnIndex="1" />
-            <TextField disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="productName" disable="true" GridPane.columnIndex="1" />
+            <TextField fx:id="productShelf" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button disable="true" layoutX="417.0" layoutY="270.0" mnemonicParsing="false" text="Add" />
+      <Button disable="true" layoutX="417.0" layoutY="270.0" mnemonicParsing="false" onAction="#addProduct" text="Add" />
    </children>
 </Pane>

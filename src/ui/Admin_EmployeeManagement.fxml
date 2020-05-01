@@ -13,19 +13,19 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Name">
+      <Label fx:id="adminNameUPLEFT" layoutX="14.0" layoutY="14.0" text="Name">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="12.0" layoutY="41.0" mnemonicParsing="false" text="log out" />
-      <Label layoutX="501.0" layoutY="14.0" text="Date/Hour">
+      <Button layoutX="12.0" layoutY="41.0" mnemonicParsing="false" onAction="#loadLogin" text="log out" />
+      <Label fx:id="dateHourTextField" layoutX="501.0" layoutY="14.0" text="Date/Hour">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="13.0" layoutY="361.0" mnemonicParsing="false" text="Back" />
-      <TableView layoutX="62.0" layoutY="104.0" prefHeight="238.0" prefWidth="199.0">
+      <Button layoutX="13.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadAdminInterface" text="Back" />
+      <TableView fx:id="employeeTabView" layoutX="62.0" layoutY="104.0" prefHeight="238.0" prefWidth="199.0">
         <columns>
           <TableColumn prefWidth="40.0" text="ID" />
           <TableColumn prefWidth="158.0" text="Name" />
@@ -57,19 +57,19 @@
             <Label text="ID type:" GridPane.rowIndex="4" />
             <Label text="Charge:" GridPane.rowIndex="7" />
             <Label text="Employee ID:" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="employeeNameMAN" GridPane.columnIndex="1" />
+            <TextField fx:id="employeeSystemIDMAN" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="employeeUserIDMAN" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="employeeIDMAN" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="employeeIDTypeMAN" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="employeePhoneMAN" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="employeeEmailMAN" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="employeeChargeMAN" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
       </GridPane>
-      <TextField layoutX="66.0" layoutY="69.0" promptText="Search Employee..." />
-      <Button layoutX="215.0" layoutY="69.0" mnemonicParsing="false" text="Search" />
-      <Button disable="true" layoutX="398.0" layoutY="361.0" mnemonicParsing="false" text="Save Changes" />
+      <TextField fx:id="searchEmployeeTextField" layoutX="66.0" layoutY="69.0" promptText="Search Employee..." />
+      <Button layoutX="215.0" layoutY="69.0" mnemonicParsing="false" onAction="#searchEmployee" text="Search" />
+      <Button layoutX="398.0" layoutY="361.0" mnemonicParsing="false" onAction="#saveChangesEmployee" text="Save Changes" />
       <Label layoutX="200.0" layoutY="28.0" text="Employee Management">
          <font>
             <Font name="System Bold" size="18.0" />
