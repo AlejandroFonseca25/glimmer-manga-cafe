@@ -24,7 +24,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="13.0" layoutY="361.0" mnemonicParsing="false" onAction="#backFromSupplyManagement" text="Back" />
+      <Button layoutX="13.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadEmployeeInterface" text="Back" />
       <VBox layoutX="112.0" layoutY="125.0" prefHeight="55.0" prefWidth="100.0">
          <children>
             <Label text="System ID:">

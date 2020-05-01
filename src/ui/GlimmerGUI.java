@@ -269,6 +269,18 @@ public class GlimmerGUI {
 	    @FXML
 	    private BorderPane mainPane;
 
+	    private Manager m1;
+
+		@FXML
+	    void saveChangesEmployee(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void searchEmployee(ActionEvent event) {
+
+	    }	
+	    
 	    @FXML
 	    void addProduct(ActionEvent event) {
 
@@ -286,16 +298,6 @@ public class GlimmerGUI {
 
 	    @FXML
 	    void searchProductID(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void loadAddClientEmployee(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void loadUpdateClientEmployee(ActionEvent event) {
 
 	    }
 
@@ -331,44 +333,18 @@ public class GlimmerGUI {
 
 	    
 	    @FXML
-	    void extendTime(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void loadRooms(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void selectFoods(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void selectMangas(ActionEvent event) {
-
-	    }
-
-
-	    @FXML
-	    void loadEmployeeLogin(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void signInClient(ActionEvent event) {
-
+	    void signInClient(ActionEvent event) throws IOException {
+	    	loadClientInterface(null);
 	    }
 
 	    @FXML
 	    void signUp(ActionEvent event) {
-
+	    	
 	    }
 
 	    @FXML
-	    void signIn(ActionEvent event) {
-
+	    void signInEmployee(ActionEvent event) throws IOException {
+	    	loadEmployeeInterface(null);
 	    }
 	    
 	    @FXML
@@ -391,16 +367,7 @@ public class GlimmerGUI {
 
 	    }
 
-	    @FXML
-	    void loadClientInterface(ActionEvent event) {
-
-	    }
 	    
-	    @FXML
-	    void loadEmployeeInterface(ActionEvent event) {
-
-	    }
-
 	    @FXML
 	    void updateClientEmployee(ActionEvent event) {
 
@@ -427,56 +394,23 @@ public class GlimmerGUI {
 	    }
 	    
 	    @FXML
-	    void loadAddClient(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void loadEmployeeManagement(ActionEvent event) {
-
-	    }
-
-
-	    @FXML
-	    void loadPayments(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void loadRoomManagement(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void loadSupplyManagement(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void loadSystemInformation(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void loadUpdateClientAdmin(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void loadEmployeeInteface(ActionEvent event) {
-
-	    }
-
-
-	    @FXML
 	    void pay(ActionEvent event) {
 
 	    }
 	       
 	    
 	    @FXML
-	    void loadAdminInterface(ActionEvent event) {
+	    void loadAdminInterface(ActionEvent event) throws IOException {
 
+
+	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_Interface.fxml"));
+
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+	    	mainPane.setCenter(root);
 	    }   
 	    
 
@@ -491,21 +425,238 @@ public class GlimmerGUI {
 			mainPane.getChildren().clear();
 	    	mainPane.setCenter(root);
 	    }
+	    
 
 	    @FXML
-	    void saveChangesEmployee(ActionEvent event) {
+	    void loadAddClient(ActionEvent event) throws IOException {
 
+	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_addUser.fxml"));
+
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+	    	mainPane.setCenter(root);
 	    }
 
 	    @FXML
-	    void searchEmployee(ActionEvent event) {
+	    void loadUpdateClientEmployee(ActionEvent event) throws IOException {
 
-	    }	
-	
-	
-	
-	private Manager m1;
+	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_UpdateUser.fxml"));
 
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+	    	mainPane.setCenter(root);
+	    }
+
+		@FXML
+		void loadRooms(ActionEvent event) throws IOException {
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_Rooms.fxml"));
+		
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		}
+
+		@FXML
+		void loadEmployeeManagement(ActionEvent event) throws IOException {
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_EmployeeManagement.fxml"));
+		
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		}
+
+		@FXML
+		void loadPayments(ActionEvent event) throws IOException {
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_Payment.fxml"));
+		
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		}
+
+		@FXML
+		void loadRoomManagement(ActionEvent event) throws IOException {
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_RoomManagement.fxml"));
+		
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		}
+
+		@FXML
+		void loadSupplyManagement(ActionEvent event) throws IOException {
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_SupplyManagement.fxml"));
+		
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		}
+
+		@FXML
+		void loadSystemInformation(ActionEvent event) throws IOException {
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_SystemInformation.fxml"));
+		
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		}
+
+		@FXML
+		void loadEmployeeLogin(ActionEvent event) throws IOException {
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_Login.fxml"));
+		
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		}
+
+		@FXML
+		void loadClientInterface(ActionEvent event) throws IOException {
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_Interface.fxml"));
+		
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		}
+
+		@FXML
+		void loadEmployeeInterface(ActionEvent event) throws IOException {
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_Interface.fxml"));
+		
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		}
+
+		@FXML
+		void loadUpdateClientAdmin(ActionEvent event) throws IOException {
+		
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_UpdateClient.fxml"));
+		
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		
+		}
+
+		@FXML
+		void loadEmployeeInteface(ActionEvent event) throws IOException {
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_Interface.fxml"));
+		
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		}
+
+
+
+
+		@FXML
+		void loadExtendTime(ActionEvent event) throws IOException {
+		
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_ExtendTime.fxml"));
+		
+		fxmlLoader.setController(this);
+		
+		Parent root = fxmlLoader.load();
+		
+		mainPane.getChildren().clear();
+		mainPane.setCenter(root);
+		
+		}
+
+		@FXML
+		void loadFoods(ActionEvent event) throws IOException {
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_food.fxml"));
+			
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		}
+
+		@FXML
+		void loadMangas(ActionEvent event) throws IOException {
+		
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_manga.fxml"));
+			
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+		}
+
+		
+
+	    @FXML
+	    void loadSignUp(ActionEvent event) throws IOException {
+
+	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_SignUp.fxml"));
+			
+			fxmlLoader.setController(this);
+			
+			Parent root = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.setCenter(root);
+	    }
+	    
+	    
 	public GlimmerGUI(Manager manager) {
 		this.m1 = new Manager();
 	}
