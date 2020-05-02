@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
@@ -228,9 +229,9 @@ public class GlimmerGUI {
 
 	    @FXML
 	    private TextField clientPhoneADD;
-
+	    
 	    @FXML
-	    private TextField clientAgeADD;
+	    private DatePicker clientAgeADD;
 
 	    @FXML
 	    private TextField clientFirstNameADD;
@@ -270,6 +271,47 @@ public class GlimmerGUI {
 	    private BorderPane mainPane;
 
 	    private Manager m1;
+	    
+	    
+	    public GlimmerGUI(Manager manager) {
+	    	this.m1 = new Manager();
+		}
+	
+	    
+	    @FXML
+	    void signUp(ActionEvent event) {
+	    	
+	    	boolean validInput = true;
+	    	
+	    	
+	    	
+	    	
+			if(clientFirstNameADD.getText().contains("[0-9]+")|| clientLastNameADD.getText().contains("[0-9]+") || (clientPhoneADD.getText().contains("[a-zA-Z]+"))) {
+				validInput = false;
+			}
+			
+			
+	    	if(validInput == true) {
+	    	m1.addClient(clientFirstNameADD.getText(), clientPhoneADD.getText(), clientIDADD.getText(), clientIDADD.getText(), clientAgeADD.getValue(), clientGenderADD.selectedToggleProperty().getName(), clientPhoneADD.getText(), clientEmailADD.getText(), clientPasswordADD.getText());
+	    	}
+	    	
+	    }
+
+		@FXML
+		void signInClient(ActionEvent event) throws IOException {
+			loadClientInterface(null);
+		}
+
+
+		@FXML
+		void signInEmployee(ActionEvent event) throws IOException {
+			if(employeeLoginID.getText().equals("admin11037") && employeeLoginPassword.getText().equals("accessV3")){
+				loadAdminInterface(null);
+			} 
+			
+			else{loadEmployeeInterface(null);}
+		}
+
 
 		@FXML
 	    void saveChangesEmployee(ActionEvent event) {
@@ -283,11 +325,6 @@ public class GlimmerGUI {
 	    
 	    @FXML
 	    void addProduct(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void backFromSupplyManagement(ActionEvent event) {
 
 	    }
 
@@ -331,21 +368,6 @@ public class GlimmerGUI {
 
 	    }
 
-	    
-	    @FXML
-	    void signInClient(ActionEvent event) throws IOException {
-	    	loadClientInterface(null);
-	    }
-
-	    @FXML
-	    void signUp(ActionEvent event) {
-	    	
-	    }
-
-	    @FXML
-	    void signInEmployee(ActionEvent event) throws IOException {
-	    	loadEmployeeInterface(null);
-	    }
 	    
 	    @FXML
 	    void addFood(ActionEvent event) {
@@ -655,11 +677,6 @@ public class GlimmerGUI {
 			mainPane.getChildren().clear();
 			mainPane.setCenter(root);
 	    }
-	    
-	    
-	public GlimmerGUI(Manager manager) {
-		this.m1 = new Manager();
-	}
 
 	
 	
