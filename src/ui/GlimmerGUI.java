@@ -23,8 +23,17 @@ import javafx.scene.layout.BorderPane;
 import model.Manager;
 
 public class GlimmerGUI {
+	
+	
+	
 	    @FXML
 	    private Label adminNameUPLEFT;
+	    
+	    @FXML
+	    private TextField clientEmailUPDT;
+	    
+	    @FXML
+	    private TextField clientEmailADD;
 	    
 	    @FXML
 	    private Label employeeNameUPLEFT;
