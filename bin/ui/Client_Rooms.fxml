@@ -39,7 +39,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="roomD" mnemonicParsing="false" onAction="#rentRoom" onMouseClicked="#setSelectedRoomName" prefHeight="105.0" prefWidth="102.0" style="-fx-background-color: #2BDA58; -fx-border-color: #000000;" text="D" GridPane.columnIndex="3">
+            <Button fx:id="roomD" mnemonicParsing="false" onAction="#rentRoom" prefHeight="105.0" prefWidth="102.0" style="-fx-background-color: #2BDA58; -fx-border-color: #000000;" text="D" GridPane.columnIndex="3">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

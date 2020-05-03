@@ -14,7 +14,7 @@
       <Label layoutX="143.0" layoutY="192.0" text="Amount to pay:" />
       <TextField fx:id="amountToPay" layoutX="226.0" layoutY="188.0" />
       <Button layoutX="241.0" layoutY="251.0" mnemonicParsing="false" onAction="#pay" prefHeight="25.0" prefWidth="118.0" text="Pay" />
-      <Button layoutX="19.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadEmployeeInterface" text="Back" />
+      <Button layoutX="19.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadAdminInterface" text="Back" />
       <Button layoutX="12.0" layoutY="31.0" mnemonicParsing="false" onAction="#loadLogin" text="log out" />
    </children>
 </Pane>

@@ -8,12 +8,12 @@ import javafx.stage.Stage;
 import model.Manager;
 
 public class Main extends Application{
-	private GlimmerGUI glimmerGUI;
+	private MainGUI glimmerGUI;
 	private Manager manager;
 	
 	public Main() {
 		manager = new Manager();
-		glimmerGUI = new GlimmerGUI(manager);
+		glimmerGUI = new MainGUI(manager);
 	}
 	
 	public static void main(String[] args) {

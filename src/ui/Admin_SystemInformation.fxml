@@ -24,7 +24,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="13.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadEmployeeInterface" text="Back" />
+      <Button layoutX="13.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadAdminInterface" text="Back" />
       <TableView layoutX="62.0" layoutY="104.0" prefHeight="238.0" prefWidth="199.0">
         <columns>
           <TableColumn prefWidth="40.0" text="ID" />

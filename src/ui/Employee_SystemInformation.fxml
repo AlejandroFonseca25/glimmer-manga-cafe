@@ -49,7 +49,6 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label />
             <Label text="System ID:" GridPane.rowIndex="4" />
             <Label text="User ID:" GridPane.rowIndex="3" />
             <Label text="Name:" />

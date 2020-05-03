@@ -47,7 +47,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Label layoutX="17.0" layoutY="14.0" text="Log in screen">
+      <Label layoutX="17.0" layoutY="14.0" text="Client Login">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

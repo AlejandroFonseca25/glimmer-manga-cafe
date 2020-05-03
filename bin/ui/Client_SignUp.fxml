@@ -34,6 +34,6 @@
       <DatePicker fx:id="clientAgeADD" layoutX="89.0" layoutY="122.0" />
       <Label layoutX="459.0" layoutY="200.0" text="Gender:" />
       <Label layoutX="58.0" layoutY="200.0" text="Email:" />
-      <TextField fx:id="clientEmailADD" layoutX="89.0" layoutY="196.0" />
+      <TextField fx:id="clientEmailSelfADD" layoutX="89.0" layoutY="196.0" />
    </children>
 </Pane>
