@@ -23,8 +23,8 @@ public class MainGUI {
 		@FXML
 		private TextField employeeLoginID;
 
-		@FXML
-		private TextField employeeLoginPassword;
+	    @FXML
+	    private PasswordField employeeLoginPassword;
 	    
 	    @FXML
 	    private TextField clientID;

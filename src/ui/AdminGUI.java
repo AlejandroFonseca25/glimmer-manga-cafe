@@ -180,7 +180,10 @@ public class AdminGUI {
 
     @FXML
     private TextField clientIDADD;
-
+    
+    @FXML
+    private ChoiceBox<String> clientIdTypeADDfromADM;
+    
     @FXML
     private PasswordField clientPasswordADD;
     
@@ -188,7 +191,7 @@ public class AdminGUI {
     private TextField productIDSearch;
 
     @FXML
-    private ChoiceBox<?> productType;
+    private ChoiceBox<String> productType;
 
     @FXML
     private TextField productName;
@@ -214,12 +217,13 @@ public class AdminGUI {
 
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_addClient.fxml"));
 
-		fxmlLoader.setController(employeeGUI);
+		fxmlLoader.setController(this);
 		
 		Parent root = fxmlLoader.load();
 		
 		mainGUI.getMainPane().getChildren().clear();
 		mainGUI.getMainPane().setCenter(root);
+		clientIdTypeADDfromADM.getItems().addAll("Citizen ID", "Identity card", "Foreigner ID", "Passport");
     }
 
 	@FXML

@@ -59,7 +59,10 @@ public class EmployeeGUI {
 
 	@FXML
 	private ChoiceBox<?> iDType;
-
+	
+    @FXML
+    private ChoiceBox<String> clientIdTypeADD;
+    
 	@FXML
 	private TextField clientPhoneUPDT;
 
@@ -151,6 +154,7 @@ public class EmployeeGUI {
 		
 		mainGUI.getMainPane().getChildren().clear();
 		mainGUI.getMainPane().setCenter(root);
+		clientIdTypeADD.getItems().addAll("Citizen ID", "Identity card", "Foreigner ID", "Passport");
     }
 
 	@FXML
