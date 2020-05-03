@@ -18,7 +18,7 @@
       <Label fx:id="dateHourTextField" layoutX="522.0" layoutY="14.0" prefHeight="17.0" prefWidth="64.0" text="Date/Hour" />
       <Button layoutX="241.0" layoutY="306.0" mnemonicParsing="false" onAction="#updateEmployee" prefHeight="25.0" prefWidth="118.0" text="Add" />
       <Button layoutX="26.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadAdminInterface" text="Back" />
-      <Label fx:id="employeeIDUPDTshow" layoutX="240.0" layoutY="42.0" prefHeight="17.0" prefWidth="81.0" text="ID Number" />
+      <Label fx:id="employeeIDUPDTshow" layoutX="241.0" layoutY="47.0" prefHeight="17.0" prefWidth="81.0" text="ID Number" />
       <Button layoutX="18.0" layoutY="30.0" mnemonicParsing="false" onAction="#loadLogin" text="Log out" />
       <GridPane layoutX="100.0" layoutY="75.0" prefHeight="206.0" prefWidth="400.0">
         <columnConstraints>
