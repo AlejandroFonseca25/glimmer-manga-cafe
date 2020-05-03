@@ -60,7 +60,6 @@ public class MainGUI {
 		}
 
 	    
-	    /** admin11037 / accessV3 */
 		@FXML
 		void signInEmployee(ActionEvent event) throws IOException {
 			if(employeeLoginID.getText().equals("admin11037") && employeeLoginPassword.getText().equals("accessV3")){

@@ -113,9 +113,12 @@ public class AdminGUI {
 
     @FXML
     private TextField employeePositionUPDT;
+    
+    @FXML
+    private TextField employeeIDUPDT;
 
     @FXML
-    private Label employeeIDUPDT;
+    private Label employeeIDUPDTshow;
 
     @FXML
     private TextField employeePasswordUPDT;
@@ -321,18 +324,20 @@ public class AdminGUI {
 		mainGUI.getMainPane().setCenter(root);
     }  
     
-	@FXML
-	void loadEmployeeInterface(ActionEvent event) throws IOException {
 
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_Interface.fxml"));
+	
+    @FXML
+    void loadAddEmployee(ActionEvent event) throws IOException {
+		
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_AddEmployee.fxml"));
 
-		fxmlLoader.setController(employeeGUI);
+		fxmlLoader.setController(this);
 
 		Parent root = fxmlLoader.load();
 
 		mainGUI.getMainPane().getChildren().clear();
 		mainGUI.getMainPane().setCenter(root);
-	}
+    }
 
     @FXML
     void updateClientAdmin(ActionEvent event) {
@@ -398,4 +403,17 @@ public class AdminGUI {
 		mainGUI.getMainPane().getChildren().clear();
 		mainGUI.getMainPane().setCenter(root);
     }
+    
+	@FXML
+	void loadEmployeeInterface(ActionEvent event) throws IOException {
+
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_Interface.fxml"));
+
+		fxmlLoader.setController(employeeGUI);
+
+		Parent root = fxmlLoader.load();
+
+		mainGUI.getMainPane().getChildren().clear();
+		mainGUI.getMainPane().setCenter(root);
+	}
 }
