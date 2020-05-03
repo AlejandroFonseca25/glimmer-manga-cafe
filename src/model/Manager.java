@@ -6,12 +6,34 @@ import java.util.ArrayList;
 public class Manager {
 	
 	private ArrayList<Client> clients;
+	private Employee headEmployee;
+	private Room[] rooms;
+	private Manga headManga;
+	private Machine[] machines;
+	
 	
 	public Manager() {
 		this.clients = new ArrayList<Client>();
+		Room a = new Room("A");
+		Room b = new Room("B");
+		Room c = new Room("C");
+		Room d = new Room("D");
+		Room e = new Room("E");
+		Room f = new Room("F");
+		Room g = new Room("G");
+		Room h = new Room("H");
+		Room i = new Room("I");
+		Room j = new Room("J");
+		Room k = new Room("K");
+		rooms = new Room[] {a,b,c,d,e,f,g,h,i,j,k};
+		headManga = null;
+		headEmployee = null;
+		CandyMachine cm = new CandyMachine();
+		FoodMachine fm = new FoodMachine();
+		machines = new Machine[] {fm,cm};
 	}
 
-	public boolean addClient(String name, String lastName, String iD, String iDType, LocalDate age, String gender, String phone, String email, String password) {
+	public boolean addClient(String firstName, String lastName, String iD, String iDType, LocalDate birthdate, String gender, String phone, String email, String password) {
 		boolean clientStatus = false;		
 		for(int i = 0; i<clients.size(); i++) {
 			if(((clients.get(i).getiD()).equals(iD)) || ((clients.get(i).getPhone()).equals(phone)) || ((clients.get(i).getEmail()).equals(email))) {
@@ -20,7 +42,7 @@ public class Manager {
 		}
 		
 		if(clientStatus == false) {
-			clients.add(new Client(name, lastName, iD, iDType, age, gender, phone, email, password));
+			clients.add(new Client(firstName, lastName, iD, iDType, birthdate, gender, phone, email,  password));
 		}
 		
 		
@@ -39,8 +61,39 @@ public class Manager {
 		return clients;
 	}
 
+	public Employee getHeadEmployee() {
+		return headEmployee;
+	}
+
+	public Room[] getRooms() {
+		return rooms;
+	}
+
+	public Manga getHeadManga() {
+		return headManga;
+	}
+
+	public Machine[] getMachines() {
+		return machines;
+	}
+
 	public void setClients(ArrayList<Client> clients) {
 		this.clients = clients;
 	}
 
+	public void setHeadEmployee(Employee headEmployee) {
+		this.headEmployee = headEmployee;
+	}
+
+	public void setRooms(Room[] rooms) {
+		this.rooms = rooms;
+	}
+
+	public void setHeadManga(Manga headManga) {
+		this.headManga = headManga;
+	}
+
+	public void setMachines(Machine[] machines) {
+		this.machines = machines;
+	}
 }

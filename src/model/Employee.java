@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class Client {
+public class Employee {
 	
 	private String firstName;
 	private String lastName;
@@ -10,16 +10,17 @@ public class Client {
 	private String iDType;
 	private LocalDate birthdate;
 	private String gender;
+	private String charge;
 	private String phone;
 	private String systemID;
 	private String email;
 	private String password;
-	private String status;
-	private double balance;
-	private Manga[] mangas;
-
-	public Client(String firstName, String lastName, String iD, String iDType, LocalDate birthdate, String gender,
-			String phone, String email,  String password) {
+	private String employeeID;
+	private Employee left;
+	private Employee right;
+	
+	public Employee(String firstName, String lastName, String iD, String iDType, LocalDate birthdate, String gender,
+			String charge, String phone, String email, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -27,13 +28,14 @@ public class Client {
 		this.iDType = iDType;
 		this.birthdate = birthdate;
 		this.gender = gender;
+		this.charge = charge;
 		this.phone = phone;
 		systemID = null;
 		this.email = email;
 		this.password = password;
-		status = "Active";
-		balance = 0;
-		mangas = new Manga[5];
+		employeeID = null;
+		left = null;
+		right = null;
 	}
 
 	public String getFirstName() {
@@ -60,12 +62,12 @@ public class Client {
 		return gender;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getCharge() {
+		return charge;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPhone() {
+		return phone;
 	}
 
 	public String getSystemID() {
@@ -76,16 +78,20 @@ public class Client {
 		return email;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getPassword() {
+		return password;
 	}
 
-	public double getBalance() {
-		return balance;
+	public String getEmployeeID() {
+		return employeeID;
 	}
-	
-	public Manga[] getMangas() {
-		return mangas;
+
+	public Employee getLeft() {
+		return left;
+	}
+
+	public Employee getRight() {
+		return right;
 	}
 
 	public void setFirstName(String firstName) {
@@ -112,12 +118,12 @@ public class Client {
 		this.gender = gender;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setCharge(String charge) {
+		this.charge = charge;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public void setSystemID(String systemID) {
@@ -128,15 +134,19 @@ public class Client {
 		this.email = email;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public void setBalance(double balance) {
-		this.balance = balance;
+	public void setEmployeeID(String employeeID) {
+		this.employeeID = employeeID;
 	}
 
-	public void setMangas(Manga[] mangas) {
-		this.mangas = mangas;
+	public void setLeft(Employee left) {
+		this.left = left;
+	}
+
+	public void setRight(Employee right) {
+		this.right = right;
 	}
 }

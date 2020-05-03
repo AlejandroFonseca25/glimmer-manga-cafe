@@ -14,7 +14,7 @@
       <TextField fx:id="clientID" layoutX="221.0" layoutY="130.0" />
       <ImageView fx:id="logoImageView" fitHeight="91.0" fitWidth="99.0" layoutX="495.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Downloads/placeholder_3.jpg" />
+            <Image url="@../../../../../Downloads/FWPae6p.png" />
          </image>
       </ImageView>
       <Label layoutX="226.0" layoutY="105.0" text="ID:">
