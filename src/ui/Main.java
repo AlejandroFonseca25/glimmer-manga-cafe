@@ -17,6 +17,7 @@ public class Main extends Application{
 	}
 	
 	public static void main(String[] args) {
+
 		launch(args);
 	}
 
@@ -31,6 +32,7 @@ public class Main extends Application{
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Glimmer - MANGA & CAFE");
+		primaryStage.setResizable(false);
 		primaryStage.show();
 		glimmerGUI.loadLogin(null);
 	}

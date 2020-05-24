@@ -20,9 +20,6 @@ public class AdminGUI {
 
     @FXML
     private Label adminNameUPLEFT;
-
-    @FXML
-    private Label dateHourTextField;
     
     @FXML
     private TableView<?> employeeTabView;
@@ -91,8 +88,8 @@ public class AdminGUI {
     private TextField employeePhoneUPDT;
 
     @FXML
-    private TextField employeeAgeUPDT;
-
+    private DatePicker employeeAgeUPDT;
+    
     @FXML
     private TextField employeeFirstNameUPDT;
 
@@ -124,7 +121,7 @@ public class AdminGUI {
     private TextField employeePasswordUPDT;
     
     @FXML
-    private TextField clientAgeUPDT;
+    private DatePicker clientAgeUPDT;
 
     @FXML
     private TextField clientFirstNameUPDT;
@@ -214,25 +211,67 @@ public class AdminGUI {
     	this.m1 = m1;
     	this.employeeGUI = employeeGUI;
     }
+    
+    public void initialize() {}
 
     @FXML
-    void loadAddClient(ActionEvent event) throws IOException {
+    public void updateClientAdmin(ActionEvent event) {
 
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_addClient.fxml"));
-
-		fxmlLoader.setController(this);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-		clientIdTypeADDfromADM.getItems().addAll("Citizen ID", "Identity card", "Foreigner ID", "Passport");
     }
 
+    @FXML
+    public void updateRoomsAdmin(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void updateEmployee(ActionEvent event) {
+
+    }
+    
+    @FXML
+    public void pay(ActionEvent event) {
+
+    }
+    
+    
+    @FXML
+    public void addProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void removeProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void searchProductID(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    public void addClient(ActionEvent event) {
+
+    }
+    
 	@FXML
-	void loadEmployeeManagement(ActionEvent event) throws IOException {
+	public void saveChangesEmployee(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void searchEmployee(ActionEvent event) {
+
+    }	
+    
+    
+    @FXML
+    public void loadAdminInterface(ActionEvent event) throws IOException {
 	
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_EmployeeManagement.fxml"));
+	
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_Interface.fxml"));
 	
 		fxmlLoader.setController(this);
 		
@@ -243,7 +282,7 @@ public class AdminGUI {
 	}
 
 	@FXML
-	void loadPayments(ActionEvent event) throws IOException {
+	public void loadPayments(ActionEvent event) throws IOException {
 	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_Payment.fxml"));
 	
@@ -256,20 +295,7 @@ public class AdminGUI {
 	}
 
 	@FXML
-	void loadRoomManagement(ActionEvent event) throws IOException {
-	
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_RoomManagement.fxml"));
-	
-		fxmlLoader.setController(this);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-	}
-
-	@FXML
-	void loadSupplyManagement(ActionEvent event) throws IOException {
+	public void loadSupplyManagement(ActionEvent event) throws IOException {
 	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_SupplyManagement.fxml"));
 	
@@ -282,7 +308,7 @@ public class AdminGUI {
 	}
 
 	@FXML
-	void loadSystemInformation(ActionEvent event) throws IOException {
+	public void loadSystemInformation(ActionEvent event) throws IOException {
 	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_SystemInformation.fxml"));
 	
@@ -294,9 +320,61 @@ public class AdminGUI {
 		mainGUI.getMainPane().setCenter(root);
 	}
 
+	@FXML
+	public void loadRoomManagement(ActionEvent event) throws IOException {
+	
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_RoomManagement.fxml"));
+	
+		fxmlLoader.setController(this);
+		
+		Parent root = fxmlLoader.load();
+		
+		mainGUI.getMainPane().getChildren().clear();
+		mainGUI.getMainPane().setCenter(root);
+	}
 
 	@FXML
-	void loadUpdateClientAdmin(ActionEvent event) throws IOException {
+	public void loadEmployeeManagement(ActionEvent event) throws IOException {
+	
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_EmployeeManagement.fxml"));
+	
+		fxmlLoader.setController(this);
+		
+		Parent root = fxmlLoader.load();
+		
+		mainGUI.getMainPane().getChildren().clear();
+		mainGUI.getMainPane().setCenter(root);
+	}
+    
+	@FXML
+	public void loadAddEmployee(ActionEvent event) throws IOException {
+		
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_AddEmployee.fxml"));
+	
+		fxmlLoader.setController(this);
+	
+		Parent root = fxmlLoader.load();
+	
+		mainGUI.getMainPane().getChildren().clear();
+		mainGUI.getMainPane().setCenter(root);
+	}
+
+	@FXML
+	public void loadAddClient(ActionEvent event) throws IOException {
+	
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_addClient.fxml"));
+	
+		fxmlLoader.setController(this);
+		
+		Parent root = fxmlLoader.load();
+		
+		mainGUI.getMainPane().getChildren().clear();
+		mainGUI.getMainPane().setCenter(root);
+		clientIdTypeADDfromADM.getItems().addAll("Citizen ID", "Identity card", "Foreigner ID", "Passport");
+	}
+
+	@FXML
+	public void loadUpdateClientAdmin(ActionEvent event) throws IOException {
 	
 	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_UpdateClient.fxml"));
@@ -309,103 +387,9 @@ public class AdminGUI {
 		mainGUI.getMainPane().setCenter(root);
 	
 	}
-	
-    @FXML
-    void loadAdminInterface(ActionEvent event) throws IOException {
 
-
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_Interface.fxml"));
-
-		fxmlLoader.setController(this);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-    }  
-    
-
-	
-    @FXML
-    void loadAddEmployee(ActionEvent event) throws IOException {
-		
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_AddEmployee.fxml"));
-
-		fxmlLoader.setController(this);
-
-		Parent root = fxmlLoader.load();
-
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-    }
-
-    @FXML
-    void updateClientAdmin(ActionEvent event) {
-
-    }
-
-    @FXML
-    void updateRoomsAdmin(ActionEvent event) {
-
-    }
-
-    @FXML
-    void updateEmployee(ActionEvent event) {
-
-    }
-    
-    @FXML
-    void pay(ActionEvent event) {
-
-    }
-    
-    
-    @FXML
-    void addProduct(ActionEvent event) {
-
-    }
-
-    @FXML
-    void removeProduct(ActionEvent event) {
-
-    }
-
-    @FXML
-    void searchProductID(ActionEvent event) {
-
-    }
-
-
-    @FXML
-    void addClient(ActionEvent event) {
-
-    }
-    
 	@FXML
-    void saveChangesEmployee(ActionEvent event) {
-
-    }
-
-    @FXML
-    void searchEmployee(ActionEvent event) {
-
-    }	
-    
-    
-    @FXML
-    void loadLogin(ActionEvent event) throws IOException {
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_Login.fxml"));
-
-		fxmlLoader.setController(mainGUI);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-    }
-    
-	@FXML
-	void loadEmployeeInterface(ActionEvent event) throws IOException {
+	public void loadEmployeeInterface(ActionEvent event) throws IOException {
 
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_Interface.fxml"));
 

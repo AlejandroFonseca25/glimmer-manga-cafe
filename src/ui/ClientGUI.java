@@ -19,9 +19,6 @@ public class ClientGUI {
     private Label clientNameUPLEFT;
 
     @FXML
-    private Label dateHourTextField;
-    
-    @FXML
     private ChoiceBox<?> extensionPlans;
 	
 	@FXML
@@ -84,13 +81,54 @@ public class ClientGUI {
     	
     }
     
+    public void initialize() {}
+    
     @FXML
-    void rentRoom(ActionEvent event) {
+    public void rentRoom(ActionEvent event) {
 
     }
     
 	@FXML
-	void loadClientInterface(ActionEvent event) throws IOException {
+    public void extendPlan(ActionEvent event) {
+
+    }
+    
+    
+    
+    @FXML
+    public void addManga(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void confirmMangas(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void removeManga(ActionEvent event) {
+
+    }
+
+    
+    @FXML
+    public void addFood(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void confirmFood(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void removeFood(ActionEvent event) {
+
+    }
+    
+    
+    @FXML
+	public void loadClientInterface(ActionEvent event) throws IOException {
 	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_Interface.fxml"));
 	
@@ -101,36 +139,9 @@ public class ClientGUI {
 		mainGUI.getMainPane().getChildren().clear();
 		mainGUI.getMainPane().setCenter(root);
 	}
-    
-	
+
 	@FXML
-	void loadMangas(ActionEvent event) throws IOException {
-	
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_manga.fxml"));
-		
-		fxmlLoader.setController(this);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-	}
-	
-	@FXML
-	void loadFoods(ActionEvent event) throws IOException {
-	
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_food.fxml"));
-		
-		fxmlLoader.setController(this);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-	}
-	
-	@FXML
-	void loadExtendTime(ActionEvent event) throws IOException {
+	public void loadExtendTime(ActionEvent event) throws IOException {
 	
 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_ExtendTime.fxml"));
 	
@@ -142,9 +153,35 @@ public class ClientGUI {
 	mainGUI.getMainPane().setCenter(root);
 	
 	}
-	
+
 	@FXML
-	void loadRooms(ActionEvent event) throws IOException {
+	public void loadMangas(ActionEvent event) throws IOException {
+	
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_manga.fxml"));
+		
+		fxmlLoader.setController(this);
+		
+		Parent root = fxmlLoader.load();
+		
+		mainGUI.getMainPane().getChildren().clear();
+		mainGUI.getMainPane().setCenter(root);
+	}
+
+	@FXML
+	public void loadFoods(ActionEvent event) throws IOException {
+	
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_food.fxml"));
+		
+		fxmlLoader.setController(this);
+		
+		Parent root = fxmlLoader.load();
+		
+		mainGUI.getMainPane().getChildren().clear();
+		mainGUI.getMainPane().setCenter(root);
+	}
+
+	@FXML
+	public void loadRooms(ActionEvent event) throws IOException {
 	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_Rooms.fxml"));
 	
@@ -154,57 +191,5 @@ public class ClientGUI {
 	
 		mainGUI.getMainPane().getChildren().clear();
 		mainGUI.getMainPane().setCenter(root);
-	}
-	
-    @FXML
-    void extendPlan(ActionEvent event) {
-
-    }
-    
-    
-    
-    @FXML
-    void addManga(ActionEvent event) {
-
-    }
-
-    @FXML
-    void confirmMangas(ActionEvent event) {
-
-    }
-
-    @FXML
-    void removeManga(ActionEvent event) {
-
-    }
-
-    
-    @FXML
-    void addFood(ActionEvent event) {
-
-    }
-
-    @FXML
-    void confirmFood(ActionEvent event) {
-
-    }
-
-    @FXML
-    void removeFood(ActionEvent event) {
-
-    }
-    
-    
-    @FXML
-    void loadLogin(ActionEvent event) throws IOException {
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_Login.fxml"));
-
-		fxmlLoader.setController(mainGUI);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-    }
-    
+	}  
 }

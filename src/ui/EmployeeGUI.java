@@ -2,10 +2,14 @@ package ui;
 
 import java.io.IOException;
 
+import customExceptions.EmptyFieldException;
+import customExceptions.RepeatedUserException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -17,18 +21,18 @@ import model.Manager;
 
 public class EmployeeGUI {
 
-
+	
 	@FXML
 	private TextField clientEmailUPDT;
 
 	@FXML
 	private TextField clientEmailADD;
+	
+	@FXML
+	private TextField clientEmailSelfADD;
 
 	@FXML
 	private Label employeeNameUPLEFT;
-
-	@FXML
-	private Label dateHourTextField;
 
 	@FXML
 	private TextField userIDPAY;
@@ -37,7 +41,7 @@ public class EmployeeGUI {
 	private TextField amountToPay;
 
 	@FXML
-	private TextField clientAgeUPDT;
+	private DatePicker clientAgeUPDT;
 
 	@FXML
 	private TextField clientFirstNameUPDT;
@@ -119,59 +123,91 @@ public class EmployeeGUI {
 		this.m1 = m1;
 		this.adminGUI = adminGUI;
 	}
-
+	
+	public void initialize() {}
+	
     @FXML
-    void addClient(ActionEvent event) {
+    public void addClient(ActionEvent event) {
+		try {  	
 
+		//Wrong input
+		if(clientFirstNameADD.getText().matches("[0-9]+") || clientLastNameADD.getText().matches("[0-9]+") || 
+				clientPhoneADD.getText().matches("[a-zA-Z]+") || clientIDADD.getText().matches("[a-zA-Z]+")) {
+			throw new IllegalArgumentException();
+		}
+		
+		//Empty fields
+		if (clientFirstNameADD.getText().equals("") || clientLastNameADD.getText().equals("") || clientAgeADD.getValue() == null || 
+				clientEmailSelfADD.getText().equals("") || clientIdTypeADD.getValue() == null || clientIDADD.getText().equals("") || 
+				clientPhoneADD.getText().equals("") || clientPasswordADD.getText().equals("")) {
+			
+			throw new EmptyFieldException();
+		
+			
+		}
+		
+		boolean repeated = m1.addClient(clientFirstNameADD.getText(),
+				clientLastNameADD.getText(),
+				clientIDADD.getText(), 
+				clientIdTypeADD.getValue(), 
+				clientAgeADD.getValue(), 
+				clientPhoneADD.getText(),
+				clientEmailSelfADD.getText(), 
+				clientPasswordADD.getText(),
+				clientGenderADD.selectedToggleProperty().getName());
+		
+		if (repeated) {
+			throw new RepeatedUserException();
+		}
+		}catch(IllegalArgumentException | EmptyFieldException | RepeatedUserException e) {
+			
+			Alert a = new Alert(AlertType.ERROR, e.getMessage());
+			a.show();
+		}
     }
 
-    
-	@FXML
-	void signUp(ActionEvent event) {
-
-		boolean validInput = true;    	
-
-		if(clientFirstNameADD.getText().contains("[0-9]+")|| clientLastNameADD.getText().contains("[0-9]+") || (clientPhoneADD.getText().contains("[a-zA-Z]+"))) {
-			validInput = false;
-		}
-
-
-		if(validInput == true) {
-			m1.addClient(clientFirstNameADD.getText(), clientPhoneADD.getText(), clientIDADD.getText(), clientIDADD.getText(), clientAgeADD.getValue(), clientGenderADD.selectedToggleProperty().getName(), clientPhoneADD.getText(), clientEmailADD.getText(), clientPasswordADD.getText());
-		}
-
-	}
-
 
     @FXML
-    void loadAddClient(ActionEvent event) throws IOException {
-
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_addClient.fxml"));
-
-		fxmlLoader.setController(this);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-		clientIdTypeADD.getItems().addAll("Citizen ID", "Identity card", "Foreigner ID", "Passport");
-    }
-
-	@FXML
-	void loadEmployeeInterface(ActionEvent event) throws IOException {
-
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_Interface.fxml"));
-
-		fxmlLoader.setController(this);
-
-		Parent root = fxmlLoader.load();
-
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
+    public void pay(ActionEvent event) {
+    	
 	}
 	
+    @FXML
+    public void updateClientEmployee(ActionEvent event) {
+
+    }
+    
+    
+    @FXML
+    public void addProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void removeProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void searchProductID(ActionEvent event) {
+
+    }  
+    
+    @FXML
+    public void loadEmployeeInterface(ActionEvent event) throws IOException {
+	
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_Interface.fxml"));
+	
+		fxmlLoader.setController(this);
+	
+		Parent root = fxmlLoader.load();
+	
+		mainGUI.getMainPane().getChildren().clear();
+		mainGUI.getMainPane().setCenter(root);
+	}
+
 	@FXML
-	void loadSystemInformation(ActionEvent event) throws IOException {
+	public void loadSystemInformation(ActionEvent event) throws IOException {
 	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_SystemInformation.fxml"));
 	
@@ -182,9 +218,23 @@ public class EmployeeGUI {
 		mainGUI.getMainPane().getChildren().clear();
 		mainGUI.getMainPane().setCenter(root);
 	}
-	
+
 	@FXML
-	void loadSupplyManagement(ActionEvent event) throws IOException {
+	public void loadAddClient(ActionEvent event) throws IOException {
+	
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_addClient.fxml"));
+	
+		fxmlLoader.setController(this);
+		
+		Parent root = fxmlLoader.load();
+		
+		mainGUI.getMainPane().getChildren().clear();
+		mainGUI.getMainPane().setCenter(root);
+		clientIdTypeADD.getItems().addAll("Citizen ID", "Identity card", "Foreigner ID", "Passport");
+	}
+
+	@FXML
+	public void loadSupplyManagement(ActionEvent event) throws IOException {
 	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_SupplyManagement.fxml"));
 	
@@ -197,7 +247,7 @@ public class EmployeeGUI {
 	}
 
 	@FXML
-	void loadPayments(ActionEvent event) throws IOException {
+	public void loadPayments(ActionEvent event) throws IOException {
 	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_Payment.fxml"));
 	
@@ -208,9 +258,9 @@ public class EmployeeGUI {
 		mainGUI.getMainPane().getChildren().clear();
 		mainGUI.getMainPane().setCenter(root);
 	}
-	
-    @FXML
-    void loadUpdateClientEmployee(ActionEvent event) throws IOException {
+
+	@FXML
+	public void loadUpdateClientEmployee(ActionEvent event) throws IOException {
 
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee_UpdateClient.fxml"));
 
@@ -222,50 +272,8 @@ public class EmployeeGUI {
 		mainGUI.getMainPane().setCenter(root);
     }
     
-	@FXML
-	void pay(ActionEvent event) {
-
-	}
-	
     @FXML
-    void updateClientEmployee(ActionEvent event) {
-
-    }
-    
-    
-    @FXML
-    void addProduct(ActionEvent event) {
-
-    }
-
-    @FXML
-    void removeProduct(ActionEvent event) {
-
-    }
-
-    @FXML
-    void searchProductID(ActionEvent event) {
-
-    }
-    
-    
-    
-    
-    
-    @FXML
-    void loadLogin(ActionEvent event) throws IOException {
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_Login.fxml"));
-
-		fxmlLoader.setController(mainGUI);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-    }
-    
-    @FXML
-    void loadAdminInterface(ActionEvent event) throws IOException {
+    public void loadAdminInterface(ActionEvent event) throws IOException {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_Interface.fxml"));
 
 		fxmlLoader.setController(adminGUI);
@@ -279,4 +287,25 @@ public class EmployeeGUI {
     public void setAdminGUI (AdminGUI ag) {
     	adminGUI = ag;
     }
+    
+    @FXML
+    public void loadLogin(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_Login.fxml"));
+
+		fxmlLoader.setController(mainGUI);
+		
+		Parent root = fxmlLoader.load();
+		
+		mainGUI.getMainPane().getChildren().clear();
+		mainGUI.getMainPane().setCenter(root);
+		mainGUI.getLogoutBut().setVisible(false);
+		mainGUI.getLogoutBut().setDisable(true);
+    }
+
+	public ChoiceBox<String> getClientIdTypeADD() {
+		
+		return clientIdTypeADD;
+    
+	}
+    
 }

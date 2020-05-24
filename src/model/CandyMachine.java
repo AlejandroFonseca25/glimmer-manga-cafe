@@ -1,6 +1,8 @@
 package model;
 
-public class CandyMachine extends Machine {
+import java.io.Serializable;
+
+public class CandyMachine extends Machine implements Serializable{
 	
 	private Candy firstCandy;
 	

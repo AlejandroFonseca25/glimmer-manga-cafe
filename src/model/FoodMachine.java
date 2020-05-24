@@ -1,6 +1,8 @@
 package model;
 
-public class FoodMachine extends Machine {
+import java.io.Serializable;
+
+public class FoodMachine extends Machine implements Serializable{
 	
 	private FoodType firstFood;
 	

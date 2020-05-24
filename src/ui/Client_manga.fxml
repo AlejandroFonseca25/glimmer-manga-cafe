@@ -7,10 +7,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="clientNameUPLEFT" layoutX="11.0" layoutY="14.0" prefHeight="17.0" prefWidth="110.0" text="Username" />
-      <Label fx:id="dateHourTextField" layoutX="522.0" layoutY="14.0" prefHeight="17.0" prefWidth="64.0" text="Date/Hour" />
       <Button layoutX="26.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadClientInterface" text="Back" />
-      <Button layoutX="11.0" layoutY="31.0" mnemonicParsing="false" onAction="#loadLogin" text="LogOut" />
       <ListView fx:id="availableMangasList" layoutX="39.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutX="93.0" layoutY="83.0" text="Available mangas" />
       <ListView fx:id="chosenMangasList" layoutX="354.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />

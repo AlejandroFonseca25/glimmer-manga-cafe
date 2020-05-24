@@ -1,9 +1,13 @@
 package model;
 
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Manager {
+import customExceptions.LoginException;
+
+
+public class Manager{
 	
 	private ArrayList<Client> clients;
 	private Employee headEmployee;
@@ -33,19 +37,21 @@ public class Manager {
 		machines = new Machine[] {fm,cm};
 	}
 
-	public boolean addClient(String firstName, String lastName, String iD, String iDType, LocalDate birthdate, String gender, String phone, String email, String password) {
+	public boolean addClient(String firstName, String lastName, String iD, String iDType, LocalDate birthdate, 
+			String phone, String email, String password, String gender) {
 		boolean clientStatus = false;		
+		
 		for(int i = 0; i<clients.size(); i++) {
 			if(((clients.get(i).getiD()).equals(iD)) || ((clients.get(i).getPhone()).equals(phone)) || ((clients.get(i).getEmail()).equals(email))) {
 				clientStatus = true;
 			}
 		}
 		
-		if(clientStatus == false) {
+		if(!clientStatus) {
 			clients.add(new Client(firstName, lastName, iD, iDType, birthdate, gender, phone, email,  password));
 		}
 		
-		
+		System.out.println(clients.get(0).getiD());
 		return clientStatus;
 		
 	}
@@ -56,7 +62,11 @@ public class Manager {
 	
 	No pueden repetirse ni la ID, ni el número telefónico ni el correo electrónico entre clientes. 
 	Podrá ser realizado tanto por clientes como por empleados. */
-
+	
+	public void serializeAll() {
+		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(room1.txt));
+	}
+	
 	public ArrayList<Client> getClients() {
 		return clients;
 	}
@@ -95,5 +105,22 @@ public class Manager {
 
 	public void setMachines(Machine[] machines) {
 		this.machines = machines;
+	}
+
+	public boolean checkValues(String posId, String posPassword) throws LoginException {
+		boolean valid = false;
+		
+		for(int i = 0; i<clients.size(); i++) {
+			
+			if(clients.get(i).getiD().equals(posId)) {
+				Client temp = clients.get(i);
+				if(temp.getPassword().equals(posPassword)) {
+					valid = true;
+				}
+
+			}
+		}
+				
+		return valid;
 	}
 }

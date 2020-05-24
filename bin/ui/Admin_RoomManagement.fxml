@@ -11,8 +11,6 @@
    <children>
       <Label layoutX="176.0" layoutY="155.0" text="Room ID:" />
       <TextField fx:id="roomIDTextField" layoutX="226.0" layoutY="151.0" />
-      <Label fx:id="adminNameUPLEFT" layoutX="14.0" layoutY="14.0" text="Admin" />
-      <Label fx:id="dateHourTextField" layoutX="522.0" layoutY="14.0" prefHeight="17.0" prefWidth="64.0" text="Date/Hour" />
       <Label layoutX="143.0" layoutY="192.0" />
       <Button layoutX="241.0" layoutY="251.0" mnemonicParsing="false" onAction="#updateRoomsAdmin" prefHeight="25.0" prefWidth="118.0" text="Confirm" />
       <Button layoutX="26.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadAdminInterface" text="Back" />
@@ -21,6 +19,5 @@
             <ToggleGroup fx:id="roomGroup" />
          </toggleGroup></RadioButton>
       <RadioButton fx:id="roomEnabled" layoutX="198.0" layoutY="201.0" mnemonicParsing="false" text="Enabled" toggleGroup="$roomGroup" />
-      <Button layoutX="14.0" layoutY="31.0" mnemonicParsing="false" onAction="#loadLogin" text="Log out" />
    </children>
 </Pane>
