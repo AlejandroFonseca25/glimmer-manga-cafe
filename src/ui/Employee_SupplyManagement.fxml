@@ -67,20 +67,19 @@
             </Label>
          </children>
       </GridPane>
-      <Button disable="true" layoutX="136.0" layoutY="270.0" mnemonicParsing="false" onAction="#removeProduct" text="Remove" />
-      <Label layoutX="401.0" layoutY="81.0" text="Addition">
+      <Button layoutX="136.0" layoutY="270.0" mnemonicParsing="false" onAction="#removeProduct" text="Remove" />
+      <Button layoutX="444.0" layoutY="349.0" mnemonicParsing="false" onAction="#addProduct" text="Add" />
+      <Label layoutX="447.0" layoutY="81.0" text="Addition">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="productType" layoutX="361.0" layoutY="149.0" prefWidth="150.0" />
-      <GridPane layoutX="323.0" layoutY="180.0" prefHeight="90.0" prefWidth="227.0">
+      <GridPane fx:id="gridPane" layoutX="354.0" layoutY="146.0" prefHeight="90.0" prefWidth="226.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="60.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="167.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -89,15 +88,9 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Shelf:" GridPane.rowIndex="1">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="productName" disable="true" GridPane.columnIndex="1" />
-            <TextField fx:id="productShelf" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="productName" prefHeight="25.0" prefWidth="157.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <Button disable="true" layoutX="417.0" layoutY="270.0" mnemonicParsing="false" onAction="#addProduct" text="Add" />
+      <ChoiceBox fx:id="productType" layoutX="407.0" layoutY="125.0" onAction="#checkBox" prefWidth="150.0" />
    </children>
 </Pane>

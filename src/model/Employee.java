@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Employee {
+@SuppressWarnings("serial")
+public class Employee implements Serializable{
 	
 	private String firstName;
 	private String lastName;
@@ -16,12 +18,12 @@ public class Employee {
 	private String email;
 	private String password;
 	private String employeeID;
+	private Employee father;
 	private Employee left;
 	private Employee right;
 	
 	public Employee(String firstName, String lastName, String iD, String iDType, LocalDate birthdate, String gender,
 			String charge, String phone, String email, String password) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.iD = iD;
@@ -36,6 +38,7 @@ public class Employee {
 		employeeID = null;
 		left = null;
 		right = null;
+		father = null;
 	}
 
 	public String getFirstName() {
@@ -46,7 +49,7 @@ public class Employee {
 		return lastName;
 	}
 
-	public String getiD() {
+	public String getID() {
 		return iD;
 	}
 
@@ -94,6 +97,14 @@ public class Employee {
 		return right;
 	}
 
+	public String getiD() {
+		return iD;
+	}
+
+	public Employee getFather() {
+		return father;
+	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
@@ -102,7 +113,7 @@ public class Employee {
 		this.lastName = lastName;
 	}
 
-	public void setiD(String iD) {
+	public void setID(String iD) {
 		this.iD = iD;
 	}
 
@@ -148,5 +159,13 @@ public class Employee {
 
 	public void setRight(Employee right) {
 		this.right = right;
+	}
+
+	public void setiD(String iD) {
+		this.iD = iD;
+	}
+
+	public void setFather(Employee father) {
+		this.father = father;
 	}
 }

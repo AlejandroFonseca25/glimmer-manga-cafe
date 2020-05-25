@@ -2,10 +2,13 @@ package ui;
 
 import java.io.IOException;
 
+import customExceptions.EmptyFieldException;
+import customExceptions.RepeatedUserException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -14,6 +17,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import model.Manager;
 
 public class AdminGUI {
@@ -85,19 +89,22 @@ public class AdminGUI {
     private TextField clientPasswordUPDT;
 
     @FXML
-    private TextField employeePhoneUPDT;
+    private TextField employeePhoneADD;
 
     @FXML
-    private DatePicker employeeAgeUPDT;
+    private DatePicker employeeAgeADD;
     
     @FXML
-    private TextField employeeFirstNameUPDT;
+    private TextField employeeEmailADD;
+    
+    @FXML
+    private TextField employeeFirstNameADD;
 
     @FXML
-    private TextField employeeLastNameUPDT;
+    private TextField employeeLastNameADD;
 
     @FXML
-    private ToggleGroup genderEmployee;
+    private ToggleGroup employeeGenderADD;
 
     @FXML
     private RadioButton employeeMaleRB;
@@ -106,19 +113,16 @@ public class AdminGUI {
     private RadioButton employeeFemaleRB;
 
     @FXML
-    private ChoiceBox<?> employeeIDTypeUPDT;
+    private ChoiceBox<String> employeeIdTypeADD;
 
     @FXML
-    private TextField employeePositionUPDT;
+    private TextField employeeChargeADD;
     
     @FXML
-    private TextField employeeIDUPDT;
+    private TextField employeeIDADD;
 
     @FXML
-    private Label employeeIDUPDTshow;
-
-    @FXML
-    private TextField employeePasswordUPDT;
+    private TextField employeePasswordADD;
     
     @FXML
     private DatePicker clientAgeUPDT;
@@ -135,7 +139,6 @@ public class AdminGUI {
     @FXML
     private RadioButton clientFemaleRB;
     
-
     @FXML
     private TextField clientEmailUPDT;
     
@@ -182,7 +185,7 @@ public class AdminGUI {
     private TextField clientIDADD;
     
     @FXML
-    private ChoiceBox<String> clientIdTypeADDfromADM;
+    private ChoiceBox<String> clientIdTypeADD;
     
     @FXML
     private PasswordField clientPasswordADD;
@@ -234,7 +237,6 @@ public class AdminGUI {
 
     }
     
-    
     @FXML
     public void addProduct(ActionEvent event) {
 
@@ -250,10 +252,63 @@ public class AdminGUI {
 
     }
 
-
     @FXML
     public void addClient(ActionEvent event) {
+    	
+    	
 
+    }
+    
+    @FXML
+    public void addEmployee(ActionEvent event) {
+		try {  	
+
+		//Wrong input
+		if(employeeFirstNameADD.getText().matches("[0-9]+") || employeeLastNameADD.getText().matches("[0-9]+") || 
+				employeePhoneADD.getText().matches("[a-zA-Z]+") || employeeIDADD.getText().matches("[a-zA-Z]+") ||
+				employeeChargeADD.getText().matches("[0-9]+")) {
+			throw new IllegalArgumentException();
+		}
+		
+		//Empty fields
+		if (employeeFirstNameADD.getText().equals("") || employeeLastNameADD.getText().equals("") || employeeAgeADD.getValue() == null || 
+				employeeEmailADD.getText().equals("") || employeeIdTypeADD.getValue() == null || employeeIDADD.getText().equals("") || 
+				employeeChargeADD.getText().equals("") || employeePhoneADD.getText().equals("") || 
+				employeePasswordADD.getText().equals("")) {
+			
+			throw new EmptyFieldException();
+		
+			
+		}
+		
+		RadioButton selectedRadioButtonGender = (RadioButton) employeeGenderADD.getSelectedToggle();
+		
+		boolean repeated = m1.addEmployee(employeeFirstNameADD.getText(), employeeLastNameADD.getText(), employeeIDADD.getText(), 
+				employeeIdTypeADD.getValue(), employeeAgeADD.getValue(), employeePhoneADD.getText(), employeeEmailADD.getText(), 
+				employeePasswordADD.getText(), selectedRadioButtonGender.getText(), employeeChargeADD.getText());
+
+		if (repeated) {
+			throw new RepeatedUserException();
+		}
+		else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Success");
+			alert.setHeaderText(null);
+			alert.setContentText("Employee added successfully!");
+			alert.showAndWait();
+		}
+		}catch(EmptyFieldException | RepeatedUserException e) {
+			
+			Alert a = new Alert(AlertType.ERROR, e.getMessage());
+			a.showAndWait();
+		}catch (IllegalArgumentException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("A field has an invalid type of data. Try again.");
+
+			alert.showAndWait();
+		}
     }
     
 	@FXML
@@ -357,6 +412,7 @@ public class AdminGUI {
 	
 		mainGUI.getMainPane().getChildren().clear();
 		mainGUI.getMainPane().setCenter(root);
+		employeeIdTypeADD.getItems().addAll("Citizen ID", "Identity card", "Foreigner ID", "Passport");
 	}
 
 	@FXML
@@ -364,13 +420,13 @@ public class AdminGUI {
 	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_addClient.fxml"));
 	
-		fxmlLoader.setController(this);
+		fxmlLoader.setController(employeeGUI);
 		
 		Parent root = fxmlLoader.load();
 		
 		mainGUI.getMainPane().getChildren().clear();
 		mainGUI.getMainPane().setCenter(root);
-		clientIdTypeADDfromADM.getItems().addAll("Citizen ID", "Identity card", "Foreigner ID", "Passport");
+		employeeGUI.getClientIdTypeADD().getItems().addAll("Citizen ID", "Identity card", "Foreigner ID", "Passport");
 	}
 
 	@FXML

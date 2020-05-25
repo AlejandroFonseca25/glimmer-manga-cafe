@@ -1,5 +1,6 @@
 package model;
 
+@SuppressWarnings("serial")
 public class Drink extends FoodType{
 	
 	private boolean carbonated;

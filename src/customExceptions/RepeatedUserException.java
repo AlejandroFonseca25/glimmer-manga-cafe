@@ -1,5 +1,6 @@
 package customExceptions;
 
+@SuppressWarnings("serial")
 public class RepeatedUserException extends Exception{
 
 	

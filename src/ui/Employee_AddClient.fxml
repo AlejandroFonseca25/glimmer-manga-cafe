@@ -39,7 +39,7 @@
       </VBox>
       <Label layoutX="356.0" layoutY="200.0" text="Gender:" />
       <Label layoutX="54.0" layoutY="236.0" text="Email:" />
-      <TextField fx:id="clientEmailADD" layoutX="89.0" layoutY="231.0" />
+      <TextField fx:id="clientEmailSelfADD" layoutX="89.0" layoutY="231.0" />
       <DatePicker fx:id="clientAgeADD" editable="false" layoutX="89.0" layoutY="122.0" />
       <Label layoutX="46.0" layoutY="200.0" text="Id type:" />
    </children>

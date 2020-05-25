@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import model.Manager;
 import threads.ClockThread;
+import threads.SavingThread;
 
 public class MainGUI {
 
@@ -78,15 +79,23 @@ public class MainGUI {
 	    	ClockThread clock = new ClockThread(this);
 	    	clock.setDaemon(true);
 	    	clock.start();
+	    	
+	    	SavingThread save = new SavingThread(m1);
+	    	save.setDaemon(true);
+	    	save.start();
+	    	
+	    	
 		}
 	    
 	    public void initialize() {}
 
-	    
+	    //TODO FIX ADMIN LOGIN CREDENTIALS
 		@FXML
 		public void signInEmployee(ActionEvent event) throws IOException {
-			if(employeeLoginID.getText().equals("admin11037") && employeeLoginPassword.getText().equals("accessV3")){
+			if(employeeLoginID.getText().equals("a") && employeeLoginPassword.getText().equals("a")){
 				adminGUI.loadAdminInterface(null);
+				logoutBut.setVisible(true);
+				logoutBut.setDisable(false);
 			} 
 			
 			else{employeeGUI.loadEmployeeInterface(null);

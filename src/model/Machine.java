@@ -1,6 +1,9 @@
 package model;
 
-public abstract class Machine {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public abstract class Machine implements Serializable{
 	
 	private int money;
 	

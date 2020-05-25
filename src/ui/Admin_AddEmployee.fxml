@@ -15,9 +15,8 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="241.0" layoutY="306.0" mnemonicParsing="false" onAction="#updateEmployee" prefHeight="25.0" prefWidth="118.0" text="Add" />
+      <Button layoutX="241.0" layoutY="306.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="25.0" prefWidth="118.0" text="Add" />
       <Button layoutX="26.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadAdminInterface" text="Back" />
-      <Label fx:id="employeeIDUPDTshow" layoutX="241.0" layoutY="47.0" prefHeight="17.0" prefWidth="81.0" text="ID Number" />
       <GridPane layoutX="100.0" layoutY="75.0" prefHeight="206.0" prefWidth="400.0">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -36,30 +35,31 @@
             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="63.0" text="First Name:" />
             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="55.0" text="Birthdate:" GridPane.rowIndex="1" />
             <Label prefHeight="17.0" prefWidth="44.0" text="Charge:" GridPane.rowIndex="2" />
-            <TextField fx:id="employeeFirstNameUPDT" GridPane.columnIndex="1" />
-            <TextField fx:id="employeePositionUPDT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="employeeLastNameUPDT" GridPane.columnIndex="3" />
-            <TextField fx:id="employeePhoneUPDT" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField fx:id="employeePasswordUPDT" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextField fx:id="employeeFirstNameADD" GridPane.columnIndex="1" />
+            <TextField fx:id="employeeChargeADD" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="employeeLastNameADD" GridPane.columnIndex="3" />
+            <TextField fx:id="employeePhoneADD" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="employeePasswordADD" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Label prefHeight="17.0" prefWidth="61.0" text="Last Name:" GridPane.columnIndex="2" />
-            <Label prefHeight="17.0" prefWidth="83.0" text="Phone number:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label prefHeight="17.0" prefWidth="41.0" text="Phone:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label prefHeight="17.0" prefWidth="56.0" text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label prefHeight="17.0" prefWidth="43.0" text="ID type:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <ChoiceBox fx:id="employeeIDTypeUPDT" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <TextField fx:id="employeeIDUPDT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="employeeIdTypeADD" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <TextField fx:id="employeeIDADD" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label prefHeight="17.0" prefWidth="60.0" text="ID number:" GridPane.rowIndex="3" />
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <children>
-                  <RadioButton fx:id="employeeMaleRB" mnemonicParsing="false" text="Male">
+                  <RadioButton fx:id="employeeFemaleRB" mnemonicParsing="false" selected="true" text="Female">
                      <toggleGroup>
-                        <ToggleGroup fx:id="genderEmployee" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="employeeFemaleRB" mnemonicParsing="false" text="Female" toggleGroup="$genderEmployee" />
+                        <ToggleGroup fx:id="employeeGenderADD" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="employeeMaleRB" mnemonicParsing="false" text="Male" toggleGroup="$employeeGenderADD" />
                </children>
             </VBox>
             <Label text="Gender:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <DatePicker fx:id="employeeAgeUPDT" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="employeeAgeADD" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label prefHeight="17.0" prefWidth="34.0" text="Email:" GridPane.rowIndex="4" />
+            <TextField fx:id="employeeEmailADD" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </children>

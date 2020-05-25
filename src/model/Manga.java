@@ -1,17 +1,19 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Manga {
+@SuppressWarnings("serial")
+public class Manga implements Serializable{
 	
 	private String name;
 	private LocalDate publishingDate;
 	private String genre;
-	private char bookshelf;
 	private boolean available;
 	private String systemId;
 	private Manga left;
 	private Manga right;
+	private Manga father;
 	
 	public Manga(String name, LocalDate publishingDate, String genre, char bookshelf) {
 		
@@ -19,11 +21,11 @@ public class Manga {
 		this.name = name;
 		this.publishingDate = publishingDate;
 		this.genre = genre;
-		this.bookshelf = bookshelf;
 		available = true;
 		systemId = null;
 		left = null;
 		right = null;
+		father = null; 
 	}
 
 	public String getName() {
@@ -36,10 +38,6 @@ public class Manga {
 
 	public String getGenre() {
 		return genre;
-	}
-
-	public char getBookshelf() {
-		return bookshelf;
 	}
 
 	public boolean isAvailable() {
@@ -68,10 +66,6 @@ public class Manga {
 
 	public void setGenre(String genre) {
 		this.genre = genre;
-	}
-
-	public void setBookshelf(char bookshelf) {
-		this.bookshelf = bookshelf;
 	}
 
 	public void setAvailable(boolean available) {

@@ -1,6 +1,9 @@
 package model;
 
-public class Candy {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public abstract class Candy implements Serializable{
 	
 	private String name;
 	private String brand;

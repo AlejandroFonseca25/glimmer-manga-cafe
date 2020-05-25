@@ -1,6 +1,9 @@
 package model;
 
-public abstract class FoodType {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public abstract class FoodType implements Serializable{
 	
 	private String name;
 	private String brand;

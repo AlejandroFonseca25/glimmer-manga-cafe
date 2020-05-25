@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import model.Manager;
 
 public class Main extends Application{
+	
+	//TODO HACER QUE EL PROGRAMA GUARDE CUANDO SE CIERRE D:
 	private MainGUI glimmerGUI;
 	private Manager manager;
 	
@@ -17,7 +19,6 @@ public class Main extends Application{
 	}
 	
 	public static void main(String[] args) {
-
 		launch(args);
 	}
 
@@ -36,5 +37,4 @@ public class Main extends Application{
 		primaryStage.show();
 		glimmerGUI.loadLogin(null);
 	}
-	
 }
