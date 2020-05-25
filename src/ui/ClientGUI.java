@@ -11,7 +11,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import model.Manager;
+import threads.RoomTimerThread;
 
 public class ClientGUI {
 
@@ -35,9 +38,9 @@ public class ClientGUI {
 
     @FXML
     private ListView<?> chosenMangasList;
-    
+   
     @FXML
-    private Label timeLeftClientTextField;
+    private ChoiceBox<String> hourPlan;
     
     @FXML
     private Button roomA;
@@ -79,13 +82,45 @@ public class ClientGUI {
     	this.m1 = m1;
     	this.mainGUI = mainGUI;
     	
+    	
     }
     
     public void initialize() {}
     
     @FXML
     public void rentRoom(ActionEvent event) {
+    	
+    	
+    	
+    	
+    	if(hourPlan.getValue() != null) {
+    	Button selectedButton = (Button)event.getSource();
+    	selectedButton.setDisable(true);
+    	selectedButton.setStyle("-fx-background-color: red; -fx-opacity: 1;");
+    	
+    	String room = selectedButton.getText();
+    	
+    	
+    	
+    	m1.rentRoom(room, 
+    			hourPlan.getValue(), 
+    			mainGUI.getUsername().getText());	
+    	
+    	RoomTimerThread timerThread = new RoomTimerThread(mainGUI, m1.getRoom(room), m1.getRoom(room).getTime()); 
+    	timerThread.setDaemon(true);
+    	timerThread.start();
+    	}
 
+    	else { 
+    		Alert a = new Alert(AlertType.ERROR, "Please select an hourly plan");
+    		a.show();
+    	}
+    	
+    	
+    	//TODO Excepciones
+    	
+    	
+    	
     }
     
 	@FXML
@@ -191,5 +226,12 @@ public class ClientGUI {
 	
 		mainGUI.getMainPane().getChildren().clear();
 		mainGUI.getMainPane().setCenter(root);
+		hourPlan.getItems().addAll("3 Hours", "6 Hours", "12 Hours", "24 Hours");
+	}
+
+	public ChoiceBox<String> getHourPlan() {
+		
+		return hourPlan;
+		
 	}  
 }

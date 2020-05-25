@@ -4,12 +4,9 @@ package model;
 public class HardCandy extends Candy{
 	
 	private boolean acid;
-	private boolean stuffed;
 	
-	public HardCandy(String name, String brand, int quantity, int price, double sugarQuantity, boolean acid, boolean stuffed) {
-		super(name, brand, quantity, price, sugarQuantity);
+	public HardCandy(String name, String brand, int quantity, String sugarQuantity, int price, boolean acid) {
+		super(name, brand, quantity, sugarQuantity, price);
 		this.acid = acid;
-		this.stuffed = stuffed;
 	}
-
 }

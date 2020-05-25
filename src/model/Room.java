@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @SuppressWarnings("serial")
 public class Room implements Serializable{
@@ -8,14 +9,16 @@ public class Room implements Serializable{
 	private String name;
 	private boolean enabled;
 	private boolean occupied;
-	private long time;
+	private LocalDateTime time;
+	private Client occupant;
 	
 	public Room(String name) {
 		super();
 		this.name = name;
 		enabled = true;
 		occupied = false;
-		time = 0;
+		time = null;
+		occupant = null;
 	}
 
 	public String getName() {
@@ -30,7 +33,11 @@ public class Room implements Serializable{
 		return occupied;
 	}
 
-	public long getTime() {
+	public Client getOccupant() {
+		return occupant;
+	}
+
+	public LocalDateTime getTime() {
 		return time;
 	}
 
@@ -46,7 +53,11 @@ public class Room implements Serializable{
 		this.occupied = occupied;
 	}
 
-	public void setTime(long time) {
+	public void setTime(LocalDateTime time) {
 		this.time = time;
+	}
+
+	public void setOccupant(Client occupant) {
+		this.occupant = occupant;
 	}
 }

@@ -33,7 +33,7 @@ public class ClockThread extends Thread{
 			@Override
 			public void run() {
 				
-				mainGUI.updateHour(date + " " + time);
+				mainGUI.updateHour(date + " " + time, dateTime.toString());
 			}
 		});
 		

@@ -8,18 +8,18 @@ public abstract class Candy implements Serializable{
 	private String name;
 	private String brand;
 	private int quantity;
+	private String sugarQuantity;
 	private int price;
-	private double sugarQuantity;
 	private String systemID;
 	private Candy next;
 	private Candy prev;
 	
-	public Candy(String name, String brand, int quantity, int price, double sugarQuantity) {
+	public Candy(String name, String brand, int quantity, String sugarQuantity, int price) {
 		this.name = name;
 		this.brand = brand;
 		this.quantity = quantity;
-		this.price = price;
 		this.sugarQuantity = sugarQuantity;
+		this.price = price;
 		systemID = null;
 		next = null;
 		prev = null;
@@ -39,10 +39,6 @@ public abstract class Candy implements Serializable{
 
 	public int getPrice() {
 		return price;
-	}
-
-	public double getSugarQuantity() {
-		return sugarQuantity;
 	}
 
 	public String getSystemID() {
@@ -71,10 +67,6 @@ public abstract class Candy implements Serializable{
 
 	public void setPrice(int price) {
 		this.price = price;
-	}
-
-	public void setSugarQuantity(double sugarQuantity) {
-		this.sugarQuantity = sugarQuantity;
 	}
 
 	public void setSystemID(String systemID) {

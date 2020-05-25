@@ -3,7 +3,7 @@ package ui;
 import java.io.IOException;
 
 import customExceptions.EmptyFieldException;
-import customExceptions.RepeatedUserException;
+import customExceptions.RepeatedException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -288,7 +288,7 @@ public class AdminGUI {
 				employeePasswordADD.getText(), selectedRadioButtonGender.getText(), employeeChargeADD.getText());
 
 		if (repeated) {
-			throw new RepeatedUserException();
+			throw new RepeatedException();
 		}
 		else {
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -297,7 +297,7 @@ public class AdminGUI {
 			alert.setContentText("Employee added successfully!");
 			alert.showAndWait();
 		}
-		}catch(EmptyFieldException | RepeatedUserException e) {
+		}catch(EmptyFieldException | RepeatedException e) {
 			
 			Alert a = new Alert(AlertType.ERROR, e.getMessage());
 			a.showAndWait();

@@ -1,15 +1,25 @@
 package ui;
 
+
+
+
+//Manga 1: Name: Nidoume no jinsei wo isekai de | PB: 2016/11/13 | Genre: Isekai | Bookshelf: A
+//Manga 2: Name: Bakemonogatari | PB: 2006/11/1 | Genre: Mistery | Bookshelf: B
+//Manga 3: Name: Jojo's bizarre adventure: Stell Ball Run | PB: 2004/01/19 | Genre: Seinen | Bookshelf: C
+//Manga 4: Name: Mob psycho 100| PB: 2012/04/18 | Genre: Action | Bookshelf: D
+//Manga 5: Name: Uzumaki | PB: 1998/08/29 | Genre: Horror | Bookshelf: A
+
 import java.io.IOException;
 
 import customExceptions.EmptyFieldException;
-import customExceptions.RepeatedUserException;
+import customExceptions.RepeatedException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -17,13 +27,49 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import model.Manager;
 
 public class EmployeeGUI {
 
-	
+	@FXML
+    private Label productLabel1SUP;
+
+    @FXML
+    private Label productLabel2SUP;
+
+    @FXML
+    private Label productLabel3SUP;
+
+    @FXML
+    private Label productLabel4SUP;
+
+    @FXML
+    private Label productLabel6SUP;
+
+    @FXML
+    private Label productLabel5SUP;
+
+    @FXML
+    private TextField productField1SUP;
+
+    @FXML
+    private TextField productField2SUP;
+
+    @FXML
+    private TextField productField3SUP;
+
+    @FXML
+    private TextField productField4SUP;
+
+    @FXML
+    private ToggleGroup productBooleanSUP;
+    
+    @FXML
+    private HBox productRBoxSUP;
+    
+    @FXML
+    private Button productAddButSUP;
 	@FXML
 	private TextField clientEmailUPDT;
 
@@ -109,10 +155,7 @@ public class EmployeeGUI {
 	private ChoiceBox<String> productType;
 
 	@FXML
-	private TextField productName;
-
-	@FXML
-	private TextField productShelf;
+	private TextField productNameSUP;
 
 	private MainGUI mainGUI;
 
@@ -161,7 +204,7 @@ public class EmployeeGUI {
 					selectedRadioButtonGender.getText());
 
 			if (repeated) {
-				throw new RepeatedUserException();
+				throw new RepeatedException();
 			}
 			else {
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -170,7 +213,7 @@ public class EmployeeGUI {
 				alert.setContentText("Client added successfully!");
 				alert.showAndWait();
 			}
-		}catch(EmptyFieldException | RepeatedUserException e) {
+		}catch(EmptyFieldException | RepeatedException e) {
 
 				Alert a = new Alert(AlertType.ERROR, e.getMessage());
 				a.showAndWait();
@@ -187,6 +230,14 @@ public class EmployeeGUI {
 
 			@FXML
 			public void pay(ActionEvent event) {
+				
+				try {
+				m1.pay(userIDPAY.getText(), Integer.parseInt(amountToPay.getText()));
+				}catch(NumberFormatException e) {
+					Alert a = new Alert(AlertType.ERROR, "Input is not a number");
+					a.show();
+					
+				}
 
 			}
 
@@ -197,34 +248,190 @@ public class EmployeeGUI {
 
 
 			public void checkBox() {
+				if (productType.getValue().equals("Food")){
+					productLabel2SUP.setText("Brand:");
+					productLabel3SUP.setText("Quantity:");
+					productLabel4SUP.setText("Price:");
+					productLabel5SUP.setText("Grams:");
+					productLabel6SUP.setText("Gluten:");
+				}
+				else if (productType.getValue().equals("Drink")) {
+					productLabel2SUP.setText("Brand:");
+					productLabel3SUP.setText("Quantity:");
+					productLabel4SUP.setText("Price:");
+					productLabel5SUP.setText("Milliliters:");
+					productLabel6SUP.setText("Carbonated:");
+				}
 				
+				else if(productType.getValue().equals("Soft Candy")) {
+					productLabel2SUP.setText("Brand:");
+					productLabel3SUP.setText("Quantity:");
+					productLabel5SUP.setText("Sugar Quantity:");
+					productLabel4SUP.setText("Price:");
+					productLabel6SUP.setText("Milk:");
+				}
 				
+				else if(productType.getValue().equals("Hard Candy")) {
+					
+					productLabel2SUP.setText("Brand:");
+					productLabel3SUP.setText("Quantity:");
+					productLabel5SUP.setText("Sugar Quantity:");
+					productLabel4SUP.setText("Price:");
+					productLabel6SUP.setText("Acid:");
+				}
+				
+				else if (productType.getValue().equals("Manga")) {
+					productLabel2SUP.setText("P. Date (YYYY-MM-DD):");
+					productLabel3SUP.setText("Genre:");
+					productLabel4SUP.setText("Bookshelf (1 letter):");
+					productLabel1SUP.setVisible(true);
+					productLabel2SUP.setVisible(true);
+					productLabel3SUP.setVisible(true);
+					productLabel4SUP.setVisible(true);
+					productLabel5SUP.setVisible(false);
+					productLabel6SUP.setVisible(false);
+					productNameSUP.setVisible(true);
+					productField1SUP.setVisible(true);
+					productField2SUP.setVisible(true);
+					productField3SUP.setVisible(true);
+					productField4SUP.setVisible(false);
+					productRBoxSUP.setVisible(false);
+				}
+				
+				if (!productType.getValue().equals("Manga")) {
+					productLabel1SUP.setVisible(true);
+					productLabel2SUP.setVisible(true);
+					productLabel3SUP.setVisible(true);
+					productLabel4SUP.setVisible(true);
+					productLabel5SUP.setVisible(true);
+					productLabel6SUP.setVisible(true);
+					productNameSUP.setVisible(true);
+					productField1SUP.setVisible(true);
+					productField2SUP.setVisible(true);
+					productField3SUP.setVisible(true);
+					productField4SUP.setVisible(true);
+					productRBoxSUP.setVisible(true);
+				}
+				productAddButSUP.setDisable(false);
 			}
 			
 			@FXML
 			public void addProduct(ActionEvent event) {
+				try {
+					boolean repeated = false;
+					//Empty fields
+					if (productNameSUP.getText().equals("") || productField1SUP.getText().equals("") || 
+							productField2SUP.getText().equals("") || productField3SUP.getText().equals("")){
+						
+						if (!productType.getValue().equals("Manga")) {
+							if (productField4SUP.getText().equals("")) {
+								throw new EmptyFieldException();
+							}
+						}
+						else {
+							throw new EmptyFieldException();
+						}
+					}
+					
+					if(productType.getValue().equals("Food")) {
+						int quantity = Integer.parseInt(productField2SUP.getText());
+						int price = Integer.parseInt(productField3SUP.getText());
+						double grams = Double.parseDouble(productField4SUP.getText());
+						RadioButton radioGluten = (RadioButton) productBooleanSUP.getSelectedToggle();
+						boolean gluten = false;
+						if (radioGluten.getText().equals("Yes")) {
+							gluten = true;
+						}
 
+						repeated = m1.addFood(productNameSUP.getText(), productField1SUP.getText(), quantity, 
+								price, gluten, grams);
+					}
 
-				if(productType.getValue().equalsIgnoreCase("food")) {
-					//m1.addFood(productName.getText(), brand, quantity, price, gluten, grams);
+					if(productType.getValue().equals("Drink")) {					
+						
+						int quantity = Integer.parseInt(productField2SUP.getText());
+						int price = Integer.parseInt(productField3SUP.getText());
+						double milliliters = Double.parseDouble(productField4SUP.getText());
+						RadioButton carbonated = (RadioButton) productBooleanSUP.getSelectedToggle();
+						boolean a = false;
+						if (carbonated.getText().equals("Yes")) {
+							a = true;
+						}
+						
+						
+						repeated = m1.addDrink(productNameSUP.getText(), productField1SUP.getText(), quantity, 
+								price, a, milliliters);
 
+					}
+
+					if(productType.getValue().equals("Soft Candy")) {
+						
+
+						int quantity = Integer.parseInt(productField2SUP.getText());
+						int price = Integer.parseInt(productField3SUP.getText());
+						String sugarQuantity = productField4SUP.getText();
+						RadioButton carbonated = (RadioButton) productBooleanSUP.getSelectedToggle();
+						boolean a = false;
+						if (carbonated.getText().equals("Yes")) {
+							a = true;
+						}
+						
+						
+						repeated = m1.addSoftCandy(productNameSUP.getText(), productField1SUP.getText(), 
+								quantity, sugarQuantity, price, a);
+					}
+
+					if(productType.getValue().equals("Hard Candy")) {
+						int quantity = Integer.parseInt(productField2SUP.getText());
+						int price = Integer.parseInt(productField3SUP.getText());
+						String sugarQuantity = productField4SUP.getText();
+						RadioButton carbonated = (RadioButton) productBooleanSUP.getSelectedToggle();
+						boolean a = false;
+						if (carbonated.getText().equals("Yes")) {
+							a = true;
+						}
+						
+						
+						repeated = m1.addHardCandy(productNameSUP.getText(), productField1SUP.getText(), 
+								quantity, sugarQuantity, price, a);
+
+					}
+
+					if(productType.getValue().equals("Manga")) {
+						
+						if (productField3SUP.getText().length() > 1 || 
+								productField1SUP.getText().matches("[a-zA-Z]+") ||
+								productField1SUP.getText().charAt(4) != '-' ||
+								productField1SUP.getText().charAt(7) != '-') {
+							throw new IllegalArgumentException();
+						}
+						
+						repeated = m1.addManga(productNameSUP.getText(), productField1SUP.getText(), 
+								productField2SUP.getText(), 
+								productField3SUP.getText().charAt(0));
+					}
+					
+					if (repeated) {
+						throw new RepeatedException();
+					}
+					else {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Success");
+						alert.setHeaderText(null);
+						alert.setContentText("Product added successfully!");
+						alert.showAndWait();
+					}
+				} catch (EmptyFieldException | RepeatedException e) {
+					Alert a = new Alert(AlertType.ERROR, e.getMessage());
+					a.showAndWait();
+				} catch (IllegalArgumentException e) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Error");
+					alert.setHeaderText("Invalid input");
+					alert.setContentText("A field has an invalid type of data. Try again.");
+
+					alert.showAndWait();
 				}
-				
-				if(productType.getValue().equalsIgnoreCase("food")) {
-					//m1.addFood(productName.getText(), brand, quantity, price, gluten, grams);
-
-				}
-				
-				if(productType.getValue().equalsIgnoreCase("food")) {
-					//m1.addFood(productName.getText(), brand, quantity, price, gluten, grams);
-
-				}
-				
-				if(productType.getValue().equalsIgnoreCase("food")) {
-					//m1.addFood(productName.getText(), brand, quantity, price, gluten, grams);
-
-				}
-
 			}
 
 			@FXML

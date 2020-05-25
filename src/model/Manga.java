@@ -1,43 +1,48 @@
 package model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @SuppressWarnings("serial")
 public class Manga implements Serializable{
 	
 	private String name;
-	private LocalDate publishingDate;
+	private String publishingDate;
 	private String genre;
+	private char bookshelf;
 	private boolean available;
 	private String systemId;
 	private Manga left;
 	private Manga right;
 	private Manga father;
 	
-	public Manga(String name, LocalDate publishingDate, String genre, char bookshelf) {
+	public Manga(String name, String publishingDate, String genre, char bookshelf) {
 		
 		super();
 		this.name = name;
 		this.publishingDate = publishingDate;
 		this.genre = genre;
+		this.bookshelf = bookshelf;
 		available = true;
 		systemId = null;
 		left = null;
 		right = null;
-		father = null; 
+		father = null;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public LocalDate getPublishingDate() {
+	public String getPublishingDate() {
 		return publishingDate;
 	}
 
 	public String getGenre() {
 		return genre;
+	}
+
+	public char getBookshelf() {
+		return bookshelf;
 	}
 
 	public boolean isAvailable() {
@@ -55,17 +60,25 @@ public class Manga implements Serializable{
 	public Manga getRight() {
 		return right;
 	}
+	
+	public Manga getFather () {
+		return father;
+	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setPublishingDate(LocalDate publishingDate) {
+	public void setPublishingDate(String publishingDate) {
 		this.publishingDate = publishingDate;
 	}
 
 	public void setGenre(String genre) {
 		this.genre = genre;
+	}
+
+	public void setBookshelf(char bookshelf) {
+		this.bookshelf = bookshelf;
 	}
 
 	public void setAvailable(boolean available) {
@@ -82,5 +95,9 @@ public class Manga implements Serializable{
 
 	public void setRight(Manga right) {
 		this.right = right;
+	}
+	
+	public void setFather(Manga father) {
+		this.father = father;
 	}
 }

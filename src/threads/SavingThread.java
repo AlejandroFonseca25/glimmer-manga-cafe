@@ -2,8 +2,6 @@ package threads;
 
 import java.io.IOException;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import model.Manager;
 
 public class SavingThread extends Thread{
@@ -22,8 +20,7 @@ public class SavingThread extends Thread{
 			try {
 				m1.saveAll();
 			} catch (ClassNotFoundException | IOException e) {
-				Alert a = new Alert(AlertType.WARNING, "An error has ocurred, please contact management");
-				a.show();
+
 			}
 			
 			try {

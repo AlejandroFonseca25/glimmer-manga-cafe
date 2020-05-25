@@ -18,9 +18,8 @@ public class Client {
 	private double balance;
 	private Manga[] mangas;
 
-	public Client(String firstName, String lastName, String iD, String iDType, LocalDate birthdate, String gender,
-			String phone, String email,  String password) {
-		super();
+	public Client(String firstName, String lastName, String iD, String iDType, LocalDate birthdate,
+			String gender, String phone, String email,  String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.iD = iD;

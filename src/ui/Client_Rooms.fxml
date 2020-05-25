@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -44,7 +45,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="roomE" mnemonicParsing="false" onAction="#rentRoom" prefHeight="105.0" prefWidth="102.0" style="-fx-background-color: #2BDA58; -fx-border-color: #000000;" text="E" GridPane.columnIndex="4">
+            <Button fx:id="roomE" mnemonicParsing="false" onAction="#rentRoom" prefHeight="105.0" prefWidth="102.0" style="-fx-background-color: purple; -fx-border-color: #000000;" text="E" GridPane.columnIndex="4">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -69,7 +70,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="roomJ" mnemonicParsing="false" onAction="#rentRoom" prefHeight="105.0" prefWidth="102.0" style="-fx-background-color: #2BDA58; -fx-border-color: #000000;" text="J" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <Button fx:id="roomJ" mnemonicParsing="false" onAction="#rentRoom" prefHeight="105.0" prefWidth="102.0" style="-fx-background-color: purple; -fx-border-color: #000000;" text="J" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -93,5 +94,6 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <ChoiceBox fx:id="hourPlan" layoutX="225.0" layoutY="336.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

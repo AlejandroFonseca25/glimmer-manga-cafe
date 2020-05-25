@@ -4,6 +4,6 @@ package customExceptions;
 public class LoginException extends Exception{
 	
 	public LoginException () {
-		super("The username and password don't match");
+		super("Incorrect username or password. Try again.");
 	}
 }

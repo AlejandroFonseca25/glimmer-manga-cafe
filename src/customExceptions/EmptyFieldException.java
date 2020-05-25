@@ -4,6 +4,6 @@ package customExceptions;
 public class EmptyFieldException extends Exception{
 
 	public EmptyFieldException () {
-		super("Input is empty");
+		super("A field or fields are empty. Try again.");
 	}
 }

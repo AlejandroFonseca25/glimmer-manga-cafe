@@ -1,7 +1,6 @@
 package ui;
 
 import java.io.IOException;
-
 import customExceptions.EmptyFieldException;
 import customExceptions.LoginException;
 import javafx.event.ActionEvent;
@@ -55,11 +54,20 @@ public class MainGUI {
 
 	    @FXML
 	    private BorderPane mainPane;
+	   
+	    @FXML
+	    private Label timeLeft;
+	   
+	    @FXML
+	    private Label userName;
 
+	    private String clockTotal;
+	    
 	    private Manager m1;
 	   
 	    public MainGUI(Manager manager) {
 	    	this.m1 = manager;
+	    
 	    	
 	    	if (clientGUI == null) {
 	    		this.clientGUI = new ClientGUI(this, manager);
@@ -92,15 +100,31 @@ public class MainGUI {
 	    //TODO FIX ADMIN LOGIN CREDENTIALS
 		@FXML
 		public void signInEmployee(ActionEvent event) throws IOException {
+			
+			try {
+			if(employeeLoginID.getText().equals("") || employeeLoginPassword.getText().equals("")){
+				throw new EmptyFieldException();
+			}	
+			
+			
 			if(employeeLoginID.getText().equals("a") && employeeLoginPassword.getText().equals("a")){
 				adminGUI.loadAdminInterface(null);
 				logoutBut.setVisible(true);
 				logoutBut.setDisable(false);
 			} 
 			
-			else{employeeGUI.loadEmployeeInterface(null);
+			else if(m1.searchEmployeeLogin(employeeLoginID.getText(), employeeLoginPassword.getText())){
+				
+				employeeGUI.loadEmployeeInterface(null);
 				logoutBut.setVisible(true);
 				logoutBut.setDisable(false);
+			}
+			
+			else throw new LoginException();
+			}catch(EmptyFieldException | LoginException e) {
+				
+				Alert a = new Alert(AlertType.WARNING, e.getMessage());
+				a.show();
 			}
 		}
 
@@ -116,6 +140,7 @@ public class MainGUI {
 			boolean valid = m1.checkValues(clientID.getText(), clientPassword.getText());
 			
 			if(valid) {
+				userName.setText(clientID.getText());
 				clientGUI.loadClientInterface(null);
 				logoutBut.setVisible(true);
 				logoutBut.setDisable(false);
@@ -139,8 +164,12 @@ public class MainGUI {
 			
 			mainPane.getChildren().clear();
 			mainPane.setCenter(root);
+			userName.setText("");
+			timeLeft.setText("");
 			logoutBut.setVisible(false);
 			logoutBut.setDisable(true);
+			
+			
 	    }
 	    
 
@@ -181,14 +210,42 @@ public class MainGUI {
 	    }
 
 
-		public void updateHour(String dateHour) {
+		public void updateHour(String dateHour, String localDateValue) {
 			
 			dateHourTextField.setText(dateHour);
+			setClockTotal(localDateValue);
 			
+			
+		}
+		
+		public void updateTimeLeft(String timeLeft) {
+			
+			this.timeLeft.setText(timeLeft);
+		}
+		
+		public String getHourTextField() {
+			
+			return dateHourTextField.getText();
 		}
 
 		public Button getLogoutBut() {
 			return logoutBut;
+		}
+		
+		public Label getUsername() {
+			return userName;
+		}
+		
+		public void setUsername(String value) {
+			userName.setText(value);
+		}
+
+		public String getClockTotal() {
+			return clockTotal;
+		}
+
+		public void setClockTotal(String clockTotal) {
+			this.clockTotal = clockTotal;
 		}
 		
 }
