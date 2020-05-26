@@ -18,6 +18,14 @@ public class DeluxeRoom extends Room{
 	public boolean isGamingService() {
 		return gamingService;
 	}
+	
+	public boolean getGamingService() {
+		return gamingService;
+	}
+	
+	public String getGamingDevice() {
+		return gamingDevice;
+	}
 
 	public void setGamingService(boolean gamingService) {
 		this.gamingService = gamingService;

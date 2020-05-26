@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import customExceptions.EmptyFieldException;
 import customExceptions.LoginException;
@@ -28,6 +29,10 @@ public class MainGUI {
 		
 		private AdminGUI adminGUI;
 		
+
+	    @FXML
+	    private Button load;
+
 		@FXML
 		private Button logoutBut;
 		
@@ -67,7 +72,7 @@ public class MainGUI {
 	    
 	    private int counter;
 	   
-	    public MainGUI(Manager manager) {
+	    public MainGUI(Manager manager) throws FileNotFoundException, ClassNotFoundException, IOException {
 	    	this.m1 = manager;
 	    
 	    	counter = 0;
@@ -89,11 +94,8 @@ public class MainGUI {
 	    	
 	    	ClockThread clock = new ClockThread(this);
 	    	clock.setDaemon(true);
-	    	clock.start();
-	    	
-	    	SavingThread save = new SavingThread(m1);
-	    	save.setDaemon(true);
-	    	save.start();
+	    	clock.start();	    	
+
 	    	
 	    	
 		}
@@ -204,6 +206,16 @@ public class MainGUI {
 			mainPane.setCenter(root);
 		}
 
+		
+	    @FXML
+	    void loadData(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+	    	m1.loadAll();
+
+	       	
+	    	SavingThread save = new SavingThread(m1);
+	    	save.setDaemon(true);
+	    	save.start();
+	    }
 
 
 	    @FXML
@@ -212,7 +224,6 @@ public class MainGUI {
 	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_SignUp.fxml"));
 			
 			fxmlLoader.setController(employeeGUI);
-			
 			Parent root = fxmlLoader.load();
 			
 			mainPane.getChildren().clear();

@@ -2,18 +2,19 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button layoutX="26.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadClientInterface" text="Back" />
-      <ListView fx:id="availableFoodList" layoutX="39.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label layoutX="101.0" layoutY="83.0" text="Available food" />
-      <ListView fx:id="chosenFoodList" layoutX="354.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label layoutX="420.0" layoutY="83.0" text="Chosen food" />
-      <Button layoutX="274.0" layoutY="175.0" mnemonicParsing="false" onAction="#addFood" prefHeight="25.0" prefWidth="52.0" text="→" />
-      <Button layoutX="274.0" layoutY="200.0" mnemonicParsing="false" onAction="#removeFood" prefHeight="25.0" prefWidth="52.0" text="←" />
-      <Button layoutX="274.0" layoutY="316.0" mnemonicParsing="false" onAction="#confirmFood" prefWidth="52.0" text="OK" />
+      <Button layoutX="274.0" layoutY="316.0" mnemonicParsing="false" onAction="#buyFood" prefWidth="52.0" text="Buy" />
+      <TextField fx:id="foodSearchFOOD" layoutX="226.0" layoutY="188.0" />
+      <Label layoutX="262.0" layoutY="162.0" text="Food Name:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

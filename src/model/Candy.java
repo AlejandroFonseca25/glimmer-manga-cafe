@@ -18,7 +18,7 @@ public abstract class Candy implements Serializable{
 		this.name = name;
 		this.brand = brand;
 		this.quantity = quantity;
-		this.sugarQuantity = sugarQuantity;
+		this.setSugarQuantity(sugarQuantity);
 		this.price = price;
 		systemID = null;
 		next = null;
@@ -79,5 +79,13 @@ public abstract class Candy implements Serializable{
 
 	public void setPrev(Candy prev) {
 		this.prev = prev;
+	}
+
+	public String getSugarQuantity() {
+		return sugarQuantity;
+	}
+
+	public void setSugarQuantity(String sugarQuantity) {
+		this.sugarQuantity = sugarQuantity;
 	}
 }

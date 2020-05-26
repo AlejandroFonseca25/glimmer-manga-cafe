@@ -248,9 +248,17 @@ public class EmployeeGUI {
 
 
     @FXML
-    void searchClient(ActionEvent event) {
+    public void searchClient(ActionEvent event) {
+    	
+    	try {
+    		
+    	if(clientIDSearch.getText().equals("")) {throw new EmptyFieldException();}
     	
     	Client a = m1.searchClientForInformation(clientIDSearch.getText());
+    	
+    	if(a == null) {
+    		throw new IllegalArgumentException("User was not found in the system"); 
+    	}
     	
     	clientNameLabel.setText(a.getFirstName() + " " + a.getLastName());
     	clientGenderLabel.setText(a.getGender());
@@ -260,7 +268,11 @@ public class EmployeeGUI {
     	idTypeLabel.setText(a.getiDType());
     	clientPhoneNumberLabel.setText(a.getPhone());
     	clientEmailLabel.setText(a.getEmail());
-    	clientDebtLabel.setText(String.valueOf(a.getBalance()));
+    	clientDebtLabel.setText(String.valueOf(a.getBalance()));}catch(IllegalArgumentException | EmptyFieldException e) {
+    		
+    		Alert a = new Alert(AlertType.ERROR, e.getMessage());
+    		a.show();
+    	}
 
     }
 
@@ -268,11 +280,26 @@ public class EmployeeGUI {
 	public void pay(ActionEvent event) {
 
 		try {
-			m1.pay(userIDPAY.getText(), Integer.parseInt(amountToPay.getText()));
+			boolean paid = m1.pay(userIDPAY.getText(), Integer.parseInt(amountToPay.getText()));
+			if (paid) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Success");
+				alert.setHeaderText(null);
+				alert.setContentText("Payment received!");
+				alert.showAndWait();
+			}
+			else {
+				throw new IllegalArgumentException();
+			}
 		}catch(NumberFormatException e) {
 			Alert a = new Alert(AlertType.ERROR, "Input is not a number");
-			a.show();
-
+			a.showAndWait();
+		}catch(IllegalArgumentException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("User not found");
+			alert.setContentText("The user was not found.");
+			alert.showAndWait();
 		}
 
 	}
@@ -281,7 +308,7 @@ public class EmployeeGUI {
 	public void updateClientEmployee(ActionEvent event) {
 
 	}
-
+	
 
 	public void checkBox() {
 		if (productType.getValue().equals("Food")){

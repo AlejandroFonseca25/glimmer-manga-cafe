@@ -15,6 +15,12 @@ public class SavingThread extends Thread{
 	
 	public void run() {
 		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		
 		while(true) {
 			
@@ -22,12 +28,7 @@ public class SavingThread extends Thread{
 				m1.saveAll();
 			} catch (ClassNotFoundException | IOException e) {}
 			
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
+
 			
 			
 		}

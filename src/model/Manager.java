@@ -2,6 +2,7 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -35,7 +36,7 @@ public class Manager implements Sortable{
 	private Manga rootManga;
 	private Machine[] machines;
 
-	public Manager() {
+	public Manager() throws FileNotFoundException, ClassNotFoundException, IOException {
 		this.clients = new ArrayList<Client>();
 		Room a = new Room("A");
 		Room b = new Room("B");
@@ -54,7 +55,8 @@ public class Manager implements Sortable{
 		CandyMachine cm = new CandyMachine();
 		FoodMachine fm = new FoodMachine();
 		machines = new Machine[] {fm,cm};
-		init();
+		//init();
+		//saveAll();
 	}
 
 	public boolean addClient(String firstName, String lastName, String iD, String iDType, LocalDate birthdate, 
@@ -90,7 +92,6 @@ public class Manager implements Sortable{
 			case 4:
 				sortByPhone();
 			}
-			System.out.println(clients.toString());
 		}
 
 		return repeated;
@@ -389,16 +390,131 @@ public class Manager implements Sortable{
 
 		//TODO Lanzar algo cuando el balance excede 300.000 o Está ocupado el cuarto o No esta habilitado (aunque supongo que el admin simplemente quita el boton)
 	}
+	
+	public boolean addMangaToClient (Manga actual, String iD, String manga) {
+        boolean found = false;
+        if (actual.getLeft() != null && !found) {
+        	found = addMangaToClient(actual.getLeft(),iD, manga);  
+        }
+        
+        if (actual.getRight() != null && !found) {
+        	found = addMangaToClient(actual.getRight(),iD, manga);  
+        }
+        
+        if (manga.equalsIgnoreCase(actual.getName()) && !found) {
+        	if (actual.isAvailable()) {
+        		actual.setAvailable(false);
+        		Manga toAdd = actual;
+        		Manga[] mangas = new Manga[5];
+        		for (int i = 0; i < clients.size(); i++) {
+        			if (iD.equals(clients.get(i).getiD())) {
+        				mangas = clients.get(i).getMangas();
+        			}
+        		}
+        		boolean done = false;
+        		for (int i = 0; i < mangas.length && !done; i++) {
+        			if (mangas[i] != null) {
+        				mangas[i] = toAdd;
+        				done = true;
+        			}
+        		}
+        		System.out.println(found);
+        		found = true;
+        		System.out.println(found);
+        	}
+        }
+        System.out.println(found);
+        return found;
+	}
+	
+	public boolean buyFood(String iD, String food) {
+		boolean done = false;
+		double price = 0;
+		boolean proceed = false;
+		
+		FoodMachine fm = (FoodMachine) machines[0];
+		FoodType actualF = fm.getFirstFood();
+		boolean found = false;
+		
+		//Food Search
+		if(fm.getFirstFood().getPrev().getName().equals(food)) {
+			found = true;
+			actualF = fm.getFirstFood().getPrev();
+		}
+		
+		while (actualF.getNext() != fm.getFirstFood() && !found) {
+			if (food.equalsIgnoreCase(actualF.getName())) {
+				found = true;
+			}
+			else {
+				actualF = actualF.getNext();
+			}
+		}
+		
+		if (!found) {
+			//Candy Search
+			CandyMachine cm = (CandyMachine) machines[1];
+			Candy actualC = cm.getFirstCandy();
+			
+			while (actualC.getNext() != cm.getFirstCandy() && !found) {
+				if (food.equalsIgnoreCase(actualC.getName())) {
+					found = true;
+				}
+				else {
+					actualC = actualC.getNext();
+					
+				}
+			}
+			
+			//Candy price
+			if (found) {
+				if (actualC.getQuantity() > 0) {
+					price = actualC.getPrice();
+					actualC.setQuantity(actualC.getQuantity()-1);
+					proceed = true;
+				}
+			}
+		}
+		
+		//Food Price
+		else {
+			if (actualF.getQuantity() > 0) {
+				price = actualF.getPrice();
+				actualF.setQuantity(actualF.getQuantity()-1);
+				proceed = true;
+			}
+		}
+		
+		if (proceed) {
+			
+			for (int i = 0; i < clients.size(); i++) {
+				if (iD.equals(clients.get(i).getiD())) {
+					Client client = clients.get(i);
+					if (client.getBalance() < -300.000) {
+						break;
+					}
+					else {
+						client.setBalance(client.getBalance() - price);
+						done = true;
+					}
+				}
+			}
+		}
+		
+		return done;
+	}
 
 
-	public void pay(String useriD, int amountToPay) {
+	public boolean pay(String useriD, int amountToPay) {
 		boolean paid = false;
 		for(int i = 0; i < clients.size() && !paid; i++) {
 			if(clients.get(i).getiD().equals(useriD)) {
 				clients.get(i).setBalance(clients.get(i).getBalance() + amountToPay);
 				paid = true;
+				break;
 			}
-		}	
+		}
+		return paid;
 	}
 
 	public boolean checkValues(String posId, String posPassword) throws LoginException {
@@ -658,24 +774,34 @@ public class Manager implements Sortable{
 
 	public void loadAll()  throws FileNotFoundException, IOException, ClassNotFoundException{
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/rooms.txt")); 
-		rooms = (Room[]) ois.readObject();	
-		ois.close();
+		
+		try {
+		rooms = (Room[]) ois.readObject();
+		ois.close();}catch(EOFException e ) {}
+		
+		try {
 		ois = new ObjectInputStream(new FileInputStream("data/employees.txt")); 
-		rootEmployee = (Employee) ois.readObject();
-		ois.close();
+		rootEmployee = (Employee) ois.readObject();		
+		ois.close();}catch(EOFException e ) {}
+		
+		try {
 		ois = new ObjectInputStream(new FileInputStream("data/mangas.txt")); 
 		rootManga = (Manga) ois.readObject();
-		ois.close();
+		ois.close();}catch(EOFException e ) {}
+		
+		try {
 		ois = new ObjectInputStream(new FileInputStream("data/machines.txt")); 
 		machines = (Machine[]) ois.readObject();
-		ois.close();
+		ois.close();}catch(EOFException e ) {}
 
 		BufferedReader br = new BufferedReader(new FileReader(new File ("data/clients.txt")));
 		String client = br.readLine();
 
 		while (client != null) {
 			String[] a = client.split(";");
+			
 			LocalDate ld = LocalDate.parse(a[4]);
+			
 			Client temp = new Client(a[0], a[1], a[2], a[3], ld, a[5], a[6], a[7], a[8]);
 			temp.setBalance(Double.parseDouble(a[9]));
 			temp.setStatus(a[10]);

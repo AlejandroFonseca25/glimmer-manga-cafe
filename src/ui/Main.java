@@ -1,5 +1,8 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +16,7 @@ public class Main extends Application{
 	private MainGUI glimmerGUI;
 	private Manager manager;
 	
-	public Main() {
+	public Main() throws FileNotFoundException, ClassNotFoundException, IOException {
 		manager = new Manager();
 		glimmerGUI = new MainGUI(manager);
 	}
@@ -35,8 +38,7 @@ public class Main extends Application{
 		primaryStage.setTitle("Glimmer - MANGA & CAFE");
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		manager.loadAll();
-		//manager.init();
+		manager.init();
 		glimmerGUI.loadLogin(null);
 	}
 }

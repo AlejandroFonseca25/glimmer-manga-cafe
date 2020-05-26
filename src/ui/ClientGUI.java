@@ -2,6 +2,7 @@ package ui;
 
 import java.io.IOException;
 
+import customExceptions.EmptyFieldException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -23,21 +23,15 @@ public class ClientGUI {
 
 	@FXML
 	private TextField clientEmailSelfADD;
-	
-    @FXML
-    private ListView<?> availableFoodList;
-
-    @FXML
-    private ListView<?> chosenFoodList;
-    
-    @FXML
-    private ListView<?> availableMangasList;
-
-    @FXML
-    private ListView<?> chosenMangasList;
    
     @FXML
     private ChoiceBox<String> hourPlan;
+    
+    @FXML
+    private TextField MangaSearchMAN;
+
+    @FXML
+    private TextField foodSearchFOOD;
     
     @FXML
     private Button roomA;
@@ -116,38 +110,69 @@ public class ClientGUI {
     	
     	
     }
-      
-   
+    @FXML
+    public void borrowMangas (ActionEvent event) {
+    	try {
+	    	String manga = MangaSearchMAN.getText();
+	    	if (manga.equals("")) {
+	    		throw new EmptyFieldException();
+	    	}
+	    	
+	    	else {
+	    		boolean saved = m1.addMangaToClient(m1.getRootManga(), mainGUI.getUsername().getText(), manga);
+	    		if (!saved) {
+	    			throw new IllegalArgumentException();
+	    		}
+	    		else {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Success");
+					alert.setHeaderText(null);
+					alert.setContentText("Manga borrowed successfully!");
+					alert.showAndWait();
+	    		}
+	    	}
+    	} catch (EmptyFieldException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Empty Field");
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
+    	} catch (IllegalArgumentException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Manga not available");
+			alert.setContentText("Either the manga doesn't exists, or it is not available at the moment.");
+			alert.showAndWait();
+    	}
+    }
     
-    @FXML
-    public void addManga(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void confirmMangas(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void removeManga(ActionEvent event) {
-
-    }
-
     
+    //Help me
     @FXML
-    public void addFood(ActionEvent event) {
+    public void buyFood () {
+    	try {
+    		String food = foodSearchFOOD.getText();
+    		if (food.equals("")) {
+    			throw new EmptyFieldException();
+    		}
 
-    }
-
-    @FXML
-    public void confirmFood(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void removeFood(ActionEvent event) {
-
+    		else {
+    			boolean possible = m1.buyFood(mainGUI.getUsername().getText(),food);
+    			if (!possible) {
+    				throw new IllegalArgumentException("Either inputted food does not exist or user has too much debt");
+    			}
+    			else {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Success");
+					alert.setHeaderText(null);
+					alert.setContentText("Food bought successfully!");
+					alert.showAndWait();
+    			}
+    		}
+    	}catch(IllegalArgumentException | EmptyFieldException e){
+    		Alert a = new Alert(AlertType.ERROR, e.getMessage());
+    		a.showAndWait();
+    	}
     }
     
     

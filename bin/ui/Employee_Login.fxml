@@ -37,7 +37,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Label layoutX="17.0" layoutY="14.0" text="Employee Login">
+      <Label layoutX="14.0" layoutY="14.0" text="Employee Login">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -47,6 +47,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <PasswordField fx:id="employeeLoginPassword" layoutX="217.0" layoutY="205.0" />
+      <PasswordField fx:id="employeeLoginPassword" layoutX="221.0" layoutY="205.0" />
+      <Button fx:id="load" layoutX="75.0" layoutY="295.0" mnemonicParsing="false" onAction="#loadData" text="Load data" />
    </children>
 </Pane>
