@@ -1,7 +1,9 @@
 package model;
 
+import interfaces.Calculable;
+
 @SuppressWarnings("serial")
-public class Food extends FoodType{
+public class Food extends FoodType implements Calculable{
 	
 	private boolean gluten;
 	private double grams;
@@ -10,6 +12,7 @@ public class Food extends FoodType{
 		super(name, brand, quantity, price);
 		this.gluten = gluten;
 		this.grams = grams;
+		calculateIVA();
 	}
 
 	public boolean isGluten() {
@@ -26,5 +29,11 @@ public class Food extends FoodType{
 
 	public void setGrams(double grams) {
 		this.grams = grams;
+	}
+
+	@Override
+	public void calculateIVA() {
+		this.setPrice(this.getPrice() + (this.getPrice()*0.19));
+		
 	}
 }

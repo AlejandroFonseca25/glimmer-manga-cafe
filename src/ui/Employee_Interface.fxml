@@ -6,27 +6,22 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="124.0" layoutY="200.0" mnemonicParsing="false" onAction="#loadSystemInformation" prefHeight="91.0" prefWidth="154.0" text="System Information" textAlignment="CENTER" translateX="1.0" wrapText="true">
+      <Button layoutX="222.0" layoutY="200.0" mnemonicParsing="false" onAction="#loadSystemInformation" prefHeight="91.0" prefWidth="154.0" text="Search Client" textAlignment="CENTER" translateX="1.0" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="19.0" layoutY="109.0" mnemonicParsing="false" onAction="#loadAddClient" prefHeight="51.0" prefWidth="154.0" text="Add Client" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="14.0" layoutY="155.0" mnemonicParsing="false" onAction="#loadAddClient" prefHeight="51.0" prefWidth="154.0" text="Add Client" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="224.0" layoutY="109.0" mnemonicParsing="false" onAction="#loadUpdateClientEmployee" prefHeight="51.0" prefWidth="154.0" text="Update Client" textAlignment="CENTER">
+      <Button layoutX="432.0" layoutY="155.0" mnemonicParsing="false" onAction="#loadPayments" prefHeight="51.0" prefWidth="154.0" text="Payments" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="424.0" layoutY="109.0" mnemonicParsing="false" onAction="#loadPayments" prefHeight="51.0" prefWidth="154.0" text="Payments" textAlignment="CENTER" wrapText="true">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="326.0" layoutY="200.0" mnemonicParsing="false" onAction="#loadSupplyManagement" prefHeight="91.0" prefWidth="154.0" text="Supply Management" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="223.0" layoutY="89.0" mnemonicParsing="false" onAction="#loadSupplyManagement" prefHeight="91.0" prefWidth="154.0" text="Supply Management" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>

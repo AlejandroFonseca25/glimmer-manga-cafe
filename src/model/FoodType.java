@@ -8,12 +8,12 @@ public abstract class FoodType implements Serializable{
 	private String name;
 	private String brand;
 	private int quantity;
-	private int price;
+	private double price;
 	private String systemID;
 	private FoodType next;
 	private FoodType prev;
 	
-	public FoodType(String name, String brand, int quantity, int price) {
+	public FoodType(String name, String brand, int quantity, double price) {
 		super();
 		this.name = name;
 		this.brand = brand;
@@ -36,7 +36,7 @@ public abstract class FoodType implements Serializable{
 		return quantity;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 	
@@ -64,8 +64,8 @@ public abstract class FoodType implements Serializable{
 		this.quantity = quantity;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPrice(double d) {
+		this.price = d;
 	}
 
 	public void setSystemID(String systemID) {

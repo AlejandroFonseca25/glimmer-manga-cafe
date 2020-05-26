@@ -11,17 +11,12 @@
             <Font size="40.0" />
          </font>
       </Button>
-      <Button layoutX="21.0" layoutY="250.0" mnemonicParsing="false" onAction="#loadExtendTime" prefHeight="91.0" prefWidth="147.0" text="Extend time" translateX="1.0">
+      <Button layoutX="94.0" layoutY="243.0" mnemonicParsing="false" onAction="#loadMangas" prefHeight="91.0" prefWidth="147.0" text="Mangas">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="227.0" layoutY="250.0" mnemonicParsing="false" onAction="#loadMangas" prefHeight="91.0" prefWidth="147.0" text="Mangas">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="428.0" layoutY="250.0" mnemonicParsing="false" onAction="#loadFoods" prefHeight="91.0" prefWidth="147.0" text="Foods">
+      <Button layoutX="360.0" layoutY="243.0" mnemonicParsing="false" onAction="#loadFoods" prefHeight="91.0" prefWidth="147.0" text="Foods">
          <font>
             <Font size="20.0" />
          </font>

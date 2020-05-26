@@ -21,9 +21,6 @@ public class ClientGUI {
     @FXML
     private Label clientNameUPLEFT;
 
-    @FXML
-    private ChoiceBox<?> extensionPlans;
-	
 	@FXML
 	private TextField clientEmailSelfADD;
 	
@@ -90,9 +87,6 @@ public class ClientGUI {
     @FXML
     public void rentRoom(ActionEvent event) {
     	
-    	
-    	
-    	
     	if(hourPlan.getValue() != null) {
     	Button selectedButton = (Button)event.getSource();
     	selectedButton.setDisable(true);
@@ -122,13 +116,8 @@ public class ClientGUI {
     	
     	
     }
-    
-	@FXML
-    public void extendPlan(ActionEvent event) {
-
-    }
-    
-    
+      
+   
     
     @FXML
     public void addManga(ActionEvent event) {
@@ -173,20 +162,6 @@ public class ClientGUI {
 		
 		mainGUI.getMainPane().getChildren().clear();
 		mainGUI.getMainPane().setCenter(root);
-	}
-
-	@FXML
-	public void loadExtendTime(ActionEvent event) throws IOException {
-	
-	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client_ExtendTime.fxml"));
-	
-	fxmlLoader.setController(this);
-	
-	Parent root = fxmlLoader.load();
-	
-	mainGUI.getMainPane().getChildren().clear();
-	mainGUI.getMainPane().setCenter(root);
-	
 	}
 
 	@FXML

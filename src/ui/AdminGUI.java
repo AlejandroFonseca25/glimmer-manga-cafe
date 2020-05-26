@@ -14,43 +14,88 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import model.Employee;
 import model.Manager;
 
 public class AdminGUI {
 
     @FXML
+    private GridPane gridPane;
+    
+    @FXML
+    private ChoiceBox<String> productType;
+
+    @FXML
+    private Label productLabel1SUP;
+
+    @FXML
+    private TextField productNameSUP;
+
+    @FXML
+    private Label productLabel2SUP;
+
+    @FXML
+    private Label productLabel3SUP;
+
+    @FXML
+    private Label productLabel4SUP;
+
+    @FXML
+    private Label productLabel6SUP;
+
+    @FXML
+    private Label productLabel5SUP;
+
+    @FXML
+    private TextField productField1SUP;
+
+    @FXML
+    private TextField productField2SUP;
+
+    @FXML
+    private TextField productField3SUP;
+
+    @FXML
+    private TextField productField4SUP;
+
+    @FXML
+    private HBox productRBoxSUP;
+
+    @FXML
+    private ToggleGroup productBooleanSUP;
+
+    @FXML
+    private Button productAddButSUP;
+    
+    @FXML
     private Label adminNameUPLEFT;
     
     @FXML
-    private TableView<?> employeeTabView;
-    
-    @FXML
-    private TextField employeeNameMAN;
+    private Label nameLabel;
 
     @FXML
-    private TextField employeeSystemIDMAN;
+    private Label systemIDLabel;
 
     @FXML
-    private TextField employeeUserIDMAN;
+    private Label userIDLabel;
 
     @FXML
-    private TextField employeeIDMAN;
+    private Label idTypeLabel;
 
     @FXML
-    private TextField employeeIDTypeMAN;
+    private Label phoneNumberLabel;
 
     @FXML
-    private TextField employeePhoneMAN;
+    private Label emailLabel;
 
     @FXML
-    private TextField employeeEmailMAN;
-
-    @FXML
-    private TextField employeeChargeMAN;
+    private Label chargeLabel;
 
     @FXML
     private TextField searchEmployeeTextField;
@@ -122,7 +167,7 @@ public class AdminGUI {
     private TextField employeeIDADD;
 
     @FXML
-    private TextField employeePasswordADD;
+    private PasswordField employeePasswordADD;
     
     @FXML
     private DatePicker clientAgeUPDT;
@@ -192,15 +237,6 @@ public class AdminGUI {
     
     @FXML
     private TextField productIDSearch;
-
-    @FXML
-    private ChoiceBox<String> productType;
-
-    @FXML
-    private TextField productName;
-
-    @FXML
-    private TextField productShelf;
     
     private MainGUI mainGUI;
     
@@ -218,44 +254,38 @@ public class AdminGUI {
     public void initialize() {}
 
     @FXML
-    public void updateClientAdmin(ActionEvent event) {
-
-    }
-
-    @FXML
     public void updateRoomsAdmin(ActionEvent event) {
+    	try {
+    		
+    	if(roomIDTextField.getText().equals("")){
+    		
+    		throw new IllegalStateException("Input is empty");
+    	}
+    	RadioButton choice = (RadioButton) roomGroup.getSelectedToggle();
+    	boolean toggleValue = true;
+    	
+    	if(choice.getText().equalsIgnoreCase("Disabled")) {
+    		toggleValue = false;
+    	}
+    	
+    	
+    	boolean a = m1.updateRoom(roomIDTextField.getText(), toggleValue);
+    	
+    	if(a == true) {
+    		Alert b = new Alert(AlertType.INFORMATION, "Room Status changed successfully");
+    		b.show();
+    	}else {Alert b = new Alert(AlertType.WARNING, "Room Status not changed");
+    	b.show();
+    	}}catch(IllegalStateException e) {
+    		Alert b = new Alert(AlertType.INFORMATION, e.getMessage());
+    		b.show();
+    		
+    	}
 
     }
 
     @FXML
     public void updateEmployee(ActionEvent event) {
-
-    }
-    
-    @FXML
-    public void pay(ActionEvent event) {
-
-    }
-    
-    @FXML
-    public void addProduct(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void removeProduct(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void searchProductID(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void addClient(ActionEvent event) {
-    	
-    	
 
     }
     
@@ -311,13 +341,20 @@ public class AdminGUI {
 		}
     }
     
-	@FXML
-	public void saveChangesEmployee(ActionEvent event) {
-
-    }
 
     @FXML
     public void searchEmployee(ActionEvent event) {
+    	
+    	//TODO EXCEPCION DE JAVA
+    	
+    	Employee a = m1.searchEmployeeForManagement(searchEmployeeTextField.getText(), m1.getRootEmployee());
+    	nameLabel.setText(a.getFirstName() + " " + a.getLastName());
+    	systemIDLabel.setText(a.getSystemID());
+    	userIDLabel.setText(a.getiD());
+    	idTypeLabel.setText(a.getiDType());
+    	phoneNumberLabel.setText(a.getPhone());
+    	emailLabel.setText(a.getEmail());
+    	chargeLabel.setText(a.getCharge());
 
     }	
     
@@ -336,44 +373,6 @@ public class AdminGUI {
 		mainGUI.getMainPane().setCenter(root);
 	}
 
-	@FXML
-	public void loadPayments(ActionEvent event) throws IOException {
-	
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_Payment.fxml"));
-	
-		fxmlLoader.setController(employeeGUI);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-	}
-
-	@FXML
-	public void loadSupplyManagement(ActionEvent event) throws IOException {
-	
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_SupplyManagement.fxml"));
-	
-		fxmlLoader.setController(employeeGUI);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-	}
-
-	@FXML
-	public void loadSystemInformation(ActionEvent event) throws IOException {
-	
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_SystemInformation.fxml"));
-	
-		fxmlLoader.setController(employeeGUI);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-	}
 
 	@FXML
 	public void loadRoomManagement(ActionEvent event) throws IOException {
@@ -415,34 +414,6 @@ public class AdminGUI {
 		employeeIdTypeADD.getItems().addAll("Citizen ID", "Identity card", "Foreigner ID", "Passport");
 	}
 
-	@FXML
-	public void loadAddClient(ActionEvent event) throws IOException {
-	
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_addClient.fxml"));
-	
-		fxmlLoader.setController(employeeGUI);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-		employeeGUI.getClientIdTypeADD().getItems().addAll("Citizen ID", "Identity card", "Foreigner ID", "Passport");
-	}
-
-	@FXML
-	public void loadUpdateClientAdmin(ActionEvent event) throws IOException {
-	
-	
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_UpdateClient.fxml"));
-	
-		fxmlLoader.setController(this);
-		
-		Parent root = fxmlLoader.load();
-		
-		mainGUI.getMainPane().getChildren().clear();
-		mainGUI.getMainPane().setCenter(root);
-	
-	}
 
 	@FXML
 	public void loadEmployeeInterface(ActionEvent event) throws IOException {

@@ -64,10 +64,13 @@ public class MainGUI {
 	    private String clockTotal;
 	    
 	    private Manager m1;
+	    
+	    private int counter;
 	   
 	    public MainGUI(Manager manager) {
 	    	this.m1 = manager;
 	    
+	    	counter = 0;
 	    	
 	    	if (clientGUI == null) {
 	    		this.clientGUI = new ClientGUI(this, manager);
@@ -107,7 +110,7 @@ public class MainGUI {
 			}	
 			
 			
-			if(employeeLoginID.getText().equals("a") && employeeLoginPassword.getText().equals("a")){
+			if(employeeLoginID.getText().equals("admin11037") && employeeLoginPassword.getText().equals("accessV3")){
 				adminGUI.loadAdminInterface(null);
 				logoutBut.setVisible(true);
 				logoutBut.setDisable(false);
@@ -134,23 +137,36 @@ public class MainGUI {
 			try {
 				
 			if(clientID.getText().equals("") || clientPassword.getText().equals("")){
-				throw new EmptyFieldException();
+				if(counter > 3) {throw new SecurityException();}
+				else throw new EmptyFieldException();
 			}	
 				
 			boolean valid = m1.checkValues(clientID.getText(), clientPassword.getText());
 			
-			if(valid) {
+			if(valid && counter <= 3) {
+				counter = 0;
 				userName.setText(clientID.getText());
 				clientGUI.loadClientInterface(null);
 				logoutBut.setVisible(true);
 				logoutBut.setDisable(false);
-			}else throw new LoginException();
+			}else if(counter > 3 ) {
+				
+				throw new SecurityException();
+			}
+				
+				
+				
+			else throw new LoginException();
 
-			}catch(EmptyFieldException | LoginException e) {
+			}catch(EmptyFieldException | LoginException e ) {
 
 				Alert a = new Alert(AlertType.WARNING, e.getMessage());
 				a.show();
-			}	
+				counter++;
+			}catch( SecurityException e) {
+				Alert a = new Alert(AlertType.WARNING, "Too many attempts to logIn");
+				a.show();
+			}
 		}
 	    
 		

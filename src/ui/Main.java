@@ -35,6 +35,8 @@ public class Main extends Application{
 		primaryStage.setTitle("Glimmer - MANGA & CAFE");
 		primaryStage.setResizable(false);
 		primaryStage.show();
+		manager.loadAll();
+		//manager.init();
 		glimmerGUI.loadLogin(null);
 	}
 }

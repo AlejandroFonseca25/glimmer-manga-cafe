@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class Client {
+public class Client implements Comparable<Client>{
 	
 	private String firstName;
 	private String lastName;
@@ -137,5 +137,17 @@ public class Client {
 
 	public void setMangas(Manga[] mangas) {
 		this.mangas = mangas;
+	}
+
+	@Override
+	public int compareTo(Client c1) {
+		int dif = 0;
+		if (firstName.compareTo(c1.getFirstName()) <= 0) {
+			dif = -1;
+		}
+		else if (firstName.compareTo(c1.getFirstName()) > 0){
+			dif = 1;
+		}
+		return dif;
 	}
 }

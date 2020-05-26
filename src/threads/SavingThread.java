@@ -15,13 +15,12 @@ public class SavingThread extends Thread{
 	
 	public void run() {
 		
+		
 		while(true) {
 			
 			try {
 				m1.saveAll();
-			} catch (ClassNotFoundException | IOException e) {
-
-			}
+			} catch (ClassNotFoundException | IOException e) {}
 			
 			try {
 				Thread.sleep(1000);

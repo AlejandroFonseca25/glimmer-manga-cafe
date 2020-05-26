@@ -6,42 +6,17 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="18.0" layoutY="169.0" mnemonicParsing="false" onAction="#loadSystemInformation" prefHeight="91.0" prefWidth="154.0" text="System Information" textAlignment="CENTER" translateX="1.0" wrapText="true">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="19.0" layoutY="94.0" mnemonicParsing="false" onAction="#loadAddClient" prefHeight="51.0" prefWidth="154.0" text="Add Client" textAlignment="CENTER" wrapText="true">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="224.0" layoutY="94.0" mnemonicParsing="false" onAction="#loadUpdateClientAdmin" prefHeight="51.0" prefWidth="154.0" text="Update Client" textAlignment="CENTER">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="424.0" layoutY="94.0" mnemonicParsing="false" onAction="#loadPayments" prefHeight="51.0" prefWidth="154.0" text="Payments" textAlignment="CENTER" wrapText="true">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="224.0" layoutY="169.0" mnemonicParsing="false" onAction="#loadSupplyManagement" prefHeight="91.0" prefWidth="154.0" text="Supply Management" textAlignment="CENTER" wrapText="true">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
       <Button layoutX="424.0" layoutY="169.0" mnemonicParsing="false" onAction="#loadRoomManagement" prefHeight="91.0" prefWidth="154.0" text="Room Management" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="122.0" layoutY="278.0" mnemonicParsing="false" onAction="#loadEmployeeManagement" prefHeight="91.0" prefWidth="154.0" text="Employee Management" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="24.0" layoutY="169.0" mnemonicParsing="false" onAction="#loadEmployeeManagement" prefHeight="91.0" prefWidth="154.0" text="Employee Management" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="322.0" layoutY="278.0" mnemonicParsing="false" onAction="#loadAddEmployee" prefHeight="91.0" prefWidth="161.0" text="Add Employee">
+      <Button layoutX="220.0" layoutY="169.0" mnemonicParsing="false" onAction="#loadAddEmployee" prefHeight="91.0" prefWidth="161.0" text="Add Employee">
          <font>
             <Font size="20.0" />
          </font>
